@@ -1,0 +1,90 @@
+@import "../../Styles/Partials/variables";
+
+.home-page {
+    width: 100%;
+    height: 100vh;
+    background-color: $main-white;
+    position: relative;
+}
+.bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    transition: 1.25s ease-in-out;
+    &--after {  
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(0, -50%);
+        overflow: hidden;
+        transition: 1.25s ease-in-out;
+    }
+    &__circle1 {
+        height: 130vh;
+        width: 150vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        border-radius: 50%;
+        background-color: $homepage-alt-green2;
+    }
+    &__circle2 {
+        height: 120vh;
+        width: 130vh;
+        position: absolute;
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        border-radius: 50%;
+        background-color: $homepage-alt-green1;
+    }
+    &__circle3 {
+        height: 110vh;
+        width: 110vh;
+        position: absolute;
+        top: 50%;  
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        border-radius: 50%;
+        background-color: $main-green;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: $main-white;
+        text-transform: uppercase;
+        &-textwrapper {
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: 1s ease-in-out;
+            &--after {
+                user-select: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                opacity: 0;
+                transition: 1s ease-in-out;
+            }
+        } 
+        &-title--main{
+            color: $secondary-green;
+            margin: 1rem 0 4rem;
+            font-size: 4rem;
+        }
+    }
+}
