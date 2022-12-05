@@ -2,6 +2,7 @@ import "./AuthForm.scss";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useState } from "react";
+import axios from "axios";
 
 const AuthForm = ({ bgState }) => {
   const [activeForm, setActiveForm] = useState("login");
@@ -9,12 +10,44 @@ const AuthForm = ({ bgState }) => {
   const handleLoginFormSwitch = () => {
     setActiveForm("login");
   };
-  const handleSignUpForm = () => {
+  const handleSignUpFormSwitch = () => {
     setActiveForm("");
   };
 
   const formSubmissionHandler = (e) => {
     e.preventDefault();
+    const userObj = {
+      username: e.target.username.value,
+      pass: e.target.pass.value,
+    };
+
+    if (activeForm) {
+      axios
+        .post(`http://localhost:5050/login`, userObj)
+        .then((res) => {
+          console.log("You are Logged in");
+          sessionStorage.setItem("token", res.data.token);
+        })
+        .catch((err) => {
+          if (err.response.status && err.response.status === 400) {
+            console.log("This username doesnt exist");
+          }
+        });
+    } else if (!activeForm) {
+      axios
+        .post(`http://localhost:5050/signup`, userObj)
+        .then((res) => {
+          console.log(res);
+          if (res.status && res.status === 205) {
+            console.log("This username already exist");
+          } else {
+            console.log("success");
+          }
+        })
+        .catch((err) =>
+          console.log(`There was an issue with your form fields`)
+        );
+    }
   };
 
   return (
@@ -28,7 +61,10 @@ const AuthForm = ({ bgState }) => {
             >
               Login
             </h2>
-            <h2 className={`auth-form__signup`} onClick={handleSignUpForm}>
+            <h2
+              className={`auth-form__signup`}
+              onClick={handleSignUpFormSwitch}
+            >
               Sign-Up
             </h2>
           </>
@@ -39,7 +75,7 @@ const AuthForm = ({ bgState }) => {
             </h2>
             <h2
               className={`auth-form__signup--active`}
-              onClick={handleSignUpForm}
+              onClick={handleSignUpFormSwitch}
             >
               Sign-Up
             </h2>
