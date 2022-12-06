@@ -1,52 +1,85 @@
 import "./AuthForm.scss";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { useState } from "react";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import { useEffect, useState } from "react";
+import md5 from "md5";
 import axios from "axios";
 
 const AuthForm = ({ bgState }) => {
   const [activeForm, setActiveForm] = useState("login");
 
+  useEffect(() => {}, [activeForm]);
+
   const handleLoginFormSwitch = () => {
+    setErrClass("");
+    setUserErrClass("");
+    setPassErrClass("");
+    setNewUserErrClass("");
     setActiveForm("login");
   };
   const handleSignUpFormSwitch = () => {
+    setErrClass("");
+    setUserErrClass("");
+    setPassErrClass("");
+    setNewUserErrClass("");
     setActiveForm("");
   };
 
+  const [userErrClass, setUserErrClass] = useState("");
+  const [passErrClass, setPassErrClass] = useState("");
+  const [errClass, setErrClass] = useState("");
+  const [newUserErrClass, setNewUserErrClass] = useState("");
+
   const formSubmissionHandler = (e) => {
     e.preventDefault();
-    const userObj = {
-      username: e.target.username.value,
-      pass: e.target.pass.value,
-    };
-
-    if (activeForm) {
-      axios
-        .post(`http://localhost:5050/login`, userObj)
-        .then((res) => {
-          console.log("You are Logged in");
-          sessionStorage.setItem("token", res.data.token);
-        })
-        .catch((err) => {
-          if (err.response.status && err.response.status === 400) {
-            console.log("This username doesnt exist");
-          }
-        });
-    } else if (!activeForm) {
-      axios
-        .post(`http://localhost:5050/signup`, userObj)
-        .then((res) => {
-          console.log(res);
-          if (res.status && res.status === 205) {
-            console.log("This username already exist");
-          } else {
-            console.log("success");
-          }
-        })
-        .catch((err) =>
-          console.log(`There was an issue with your form fields`)
-        );
+    if (!e.target.username.value || !e.target.pass.value) {
+      setErrClass("--error");
+      e.target.reset();
+    } else {
+      const userObj = {
+        username: e.target.username.value.toLowerCase(),
+        pass: md5(e.target.pass.value),
+      };
+      if (activeForm) {
+        axios
+          .post(`http://localhost:5050/login`, userObj)
+          .then((res) => {
+            setErrClass("");
+            setUserErrClass("");
+            setPassErrClass("");
+            if (res.status && res.status === 202) {
+              setUserErrClass("--error");
+            } else if (res.status && res.status === 203) {
+              setPassErrClass("--error");
+              e.target.pass.value = "";
+            } else {
+              setErrClass("");
+              setUserErrClass("");
+              setPassErrClass("");
+              sessionStorage.setItem("token", res.data.token);
+              alert("You are logged in!");
+            }
+          })
+          .catch((err) => {
+            console.log(`Internal server err ${err}`);
+          });
+      } else if (!activeForm) {
+        axios
+          .post(`http://localhost:5050/signup`, userObj)
+          .then((res) => {
+            setErrClass("");
+            setUserErrClass("");
+            if (res.status && res.status === 205) {
+              setNewUserErrClass("--error");
+            } else {
+              setErrClass("");
+              setNewUserErrClass("");
+              alert("You have successfully created your account!");
+            }
+          })
+          .catch((err) => console.log(`Internal server err ${err}`));
+      }
     }
   };
 
@@ -65,7 +98,7 @@ const AuthForm = ({ bgState }) => {
               className={`auth-form__signup`}
               onClick={handleSignUpFormSwitch}
             >
-              Sign-Up
+              Sign Up
             </h2>
           </>
         ) : (
@@ -77,27 +110,65 @@ const AuthForm = ({ bgState }) => {
               className={`auth-form__signup--active`}
               onClick={handleSignUpFormSwitch}
             >
-              Sign-Up
+              Sign Up
             </h2>
           </>
         )}
       </div>
-      <div className="auth-form__input-wrapper">
-        <AccountCircleOutlinedIcon />
-        <input
-          className="auth-form__input"
-          placeholder="Username"
-          name="username"
-        ></input>
+      <div className="auth-form__user-wrapper">
+        <div
+          className={`auth-form__input-wrapper${userErrClass}${errClass}${newUserErrClass}`}
+        >
+          <AccountCircleOutlinedIcon />
+          <input
+            className="auth-form__input"
+            placeholder="Username"
+            name="username"
+          ></input>
+        </div>
+        {userErrClass && (
+          <div className="auth-form__error-wrapper">
+            <ErrorOutlineIcon style={{ color: "red", fontSize: 20 }} />
+            <p className="auth-form__error-text">This user does not exist</p>
+          </div>
+        )}
+        {newUserErrClass && (
+          <div className="auth-form__error-wrapper">
+            <ErrorOutlineIcon style={{ color: "red", fontSize: 20 }} />
+            <p className="auth-form__error-text">
+              This username is unavailable
+            </p>
+          </div>
+        )}
+        {errClass && (
+          <div className="auth-form__error-wrapper">
+            <ErrorOutlineIcon style={{ color: "red", fontSize: 20 }} />
+            <p className="auth-form__error-text">Please fill in all fields</p>
+          </div>
+        )}
       </div>
-      <div className="auth-form__input-wrapper">
-        <LockOutlinedIcon />
-        <input
-          className="auth-form__input"
-          placeholder="Password"
-          type="password"
-          name="pass"
-        ></input>
+      <div className="auth-form__pass-wrapper">
+        <div className={`auth-form__input-wrapper${passErrClass}${errClass}`}>
+          <LockOutlinedIcon />
+          <input
+            className="auth-form__input"
+            placeholder="Password"
+            type="password"
+            name="pass"
+          ></input>
+        </div>
+        {passErrClass && (
+          <div className="auth-form__error-wrapper">
+            <ErrorOutlineIcon style={{ color: "red", fontSize: 20 }} />
+            <p className="auth-form__error-text">Incorrect password</p>
+          </div>
+        )}
+        {errClass && (
+          <div className="auth-form__error-wrapper">
+            <ErrorOutlineIcon style={{ color: "red", fontSize: 20 }} />
+            <p className="auth-form__error-text">Please fill in all fields</p>
+          </div>
+        )}
       </div>
       {activeForm ? (
         <button className="auth-form__button" type="submit">
