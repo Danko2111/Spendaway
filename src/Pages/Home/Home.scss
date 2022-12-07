@@ -100,27 +100,34 @@
             align-items: center;
             background-color: #617e7b;
             border-radius: 50%;
-            width: 80%;
-            height: 80%;
-            padding: 6rem;
+            width: 60%;
+            height: 60%;
+            padding: 4rem;
+            margin: 0 auto;
             opacity: 1;
-            &:hover {
-                outline: 2px solid $secondary-green;
-                cursor: pointer;
-            }
             &--after {
-            user-select: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #617e7b;
-            border-radius: 50%;
-            width: 80%;
-            height: 80%;
-            padding: 6rem;
-            opacity: 0;
-            transition: 0.75s ease-in-out;
+                user-select: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: #617e7b;
+                border-radius: 50%;
+                width: 60%;
+                height: 60%;
+                padding: 4rem;
+                opacity: 0;
+                transition: 0.75s ease-in-out;
+            }
+            @include desktop { width: 60%;
+                height: 80%;
+                width: 80%;
+                padding: 6rem;
+                &--after {
+                    height: 80%;
+                    width: 80%;
+                    padding: 6rem;
+                }
             }
         } 
         &-title {

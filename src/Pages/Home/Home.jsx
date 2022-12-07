@@ -12,16 +12,13 @@ const Home = () => {
   };
 
   return (
-    <div className="home-page">
+    <div className="home-page" onClick={(e) => handleContinueClick(e)}>
       <div className={`bg${bgState}`}>
         <div className="bg__circle1">
           <div className="bg__circle2">
             <div className="bg__circle3">
-              <div
-                className={`bg__circle3-textwrapper${bgState}`}
-                onClick={(e) => handleContinueClick(e)}
-              >
-                <h2 className="bg__circle3-title">welcome to</h2>
+              <div className={`bg__circle3-textwrapper${bgState}`}>
+                <h2 className="bg__circle3-title">Welcome to</h2>
                 <img
                   className="bg__circle3-title--main"
                   alt="site logo"

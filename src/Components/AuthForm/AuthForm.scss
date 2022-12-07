@@ -3,18 +3,20 @@
 
 .auth-form {
     transform: translateY(-50px);
-    display: none;
+    opacity: 0;
     &--after {
         width: 100%;
         max-width: 400px;
+        opacity: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 3rem;
+        transition: 0.35s ease-in;
+        transition-delay: 0.5s;
     }
         @include desktop {
-            display: unset;
             opacity: 0;
             &--after {
                 position: absolute;
@@ -72,6 +74,7 @@
         border-radius: 20px;
         padding: 0.8rem 1.5rem;
         box-shadow:0 2px 10px  $main-green;
+        color: $secondary-green;
         display: flex;
         align-items: center;
         transition: 0.2s ease-in-out;
