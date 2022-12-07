@@ -22,13 +22,21 @@ const Home = () => {
                 onClick={(e) => handleContinueClick(e)}
               >
                 <h2 className="bg__circle3-title">welcome to</h2>
-                <img className="bg__circle3-title--main" src={Logo}></img>
+                <img
+                  className="bg__circle3-title--main"
+                  alt="site logo"
+                  src={Logo}
+                ></img>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <img className={`bg__icon${bgState}`} alt="icon" src={smallLogo}></img>
+      <img
+        className={`bg__icon${bgState}`}
+        alt="site logo"
+        src={smallLogo}
+      ></img>
       <AuthForm bgState={bgState} />
     </div>
   );
