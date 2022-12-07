@@ -8,21 +8,21 @@ import md5 from "md5";
 import axios from "axios";
 
 const AuthForm = ({ bgState }) => {
-  const [activeForm, setActiveForm] = useState("login");
+  const [activeForm, setActiveForm] = useState(true);
 
   const handleLoginFormSwitch = () => {
     setErrClass("");
     setUserErrClass("");
     setPassErrClass("");
     setNewUserErrClass("");
-    setActiveForm("login");
+    setActiveForm(true);
   };
   const handleSignUpFormSwitch = () => {
     setErrClass("");
     setUserErrClass("");
     setPassErrClass("");
     setNewUserErrClass("");
-    setActiveForm("");
+    setActiveForm(false);
   };
 
   const [userErrClass, setUserErrClass] = useState("");
