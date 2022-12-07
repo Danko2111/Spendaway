@@ -2,14 +2,13 @@ import "./AuthForm.scss";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import md5 from "md5";
 import axios from "axios";
 
 const AuthForm = ({ bgState }) => {
   const [activeForm, setActiveForm] = useState("login");
-
-  useEffect(() => {}, [activeForm]);
 
   const handleLoginFormSwitch = () => {
     setErrClass("");
@@ -30,6 +29,8 @@ const AuthForm = ({ bgState }) => {
   const [passErrClass, setPassErrClass] = useState("");
   const [errClass, setErrClass] = useState("");
   const [newUserErrClass, setNewUserErrClass] = useState("");
+
+  const nav = useNavigate();
 
   const formSubmissionHandler = (e) => {
     e.preventDefault();
@@ -59,6 +60,7 @@ const AuthForm = ({ bgState }) => {
               setPassErrClass("");
               sessionStorage.setItem("token", res.data.token);
               alert("You are logged in!");
+              nav("/dashboard");
             }
           })
           .catch((err) => {
@@ -76,6 +78,9 @@ const AuthForm = ({ bgState }) => {
               setErrClass("");
               setNewUserErrClass("");
               alert("You have successfully created your account!");
+              e.target.pass.value = "";
+              e.target.username.value = "";
+              setActiveForm("Login");
             }
           })
           .catch((err) => console.log(`Internal server err ${err}`));

@@ -1,0 +1,19 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.dashboard-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: $main-white;
+    display: flex;
+}
+
+.dashboard__nav {
+    max-width: 250px;
+    flex:1;
+    background-color: $secondary-green;
+}
+
+.dashboard__main-content {
+    flex: 4;
+}

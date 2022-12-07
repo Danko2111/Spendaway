@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./Home.scss";
+import Logo from "../../assets/images/Logo.svg";
+import smallLogo from "../../assets/images/smallLogo.svg";
 import AuthForm from "../../Components/AuthForm/AuthForm";
 
 const Home = () => {
@@ -11,18 +13,22 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      <div className={`bg${bgState}`} onClick={(e) => handleContinueClick(e)}>
+      <div className={`bg${bgState}`}>
         <div className="bg__circle1">
           <div className="bg__circle2">
             <div className="bg__circle3">
-              <div className={`bg__circle3-textwrapper${bgState}`}>
+              <div
+                className={`bg__circle3-textwrapper${bgState}`}
+                onClick={(e) => handleContinueClick(e)}
+              >
                 <h2 className="bg__circle3-title">welcome to</h2>
-                <h1 className="bg__circle3-title--main">spendaway</h1>
+                <img className="bg__circle3-title--main" src={Logo}></img>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <img className={`bg__icon${bgState}`} alt="icon" src={smallLogo}></img>
       <AuthForm bgState={bgState} />
     </div>
   );

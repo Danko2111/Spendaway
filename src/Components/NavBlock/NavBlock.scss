@@ -1,0 +1,62 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.navblock {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $secondary-green;
+}
+
+.navblock__logo-wrapper {
+    width: 100%;
+    padding:1rem 2rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navblock-logo {
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+    padding: 0.5rem;
+    background-color: #617e7b;
+}
+.navblock__links-wrapper {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2.2rem;
+}
+.navblock__link{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    color: $main-white;
+    cursor: pointer;
+}
+.navblock__logout-button-wrapper{
+    width: 100%;
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.navblock__logout-button {
+    background-color: $secondary-green;
+    border: none;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    color: $main-white;
+    font-size: inherit;
+    cursor: pointer;
+}
