@@ -1,0 +1,27 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+
+.dashboard__graph-wrapper{
+    flex:1;
+    border-radius: 8px;
+    background-color: white;
+    padding: 2rem 2rem 0;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.dashboard__graph-title {
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+    padding-bottom: 2rem;
+}
+.dashboard__graph-data {
+    margin: auto 0;
+    @include desktop {
+        max-width: 700px;
+    }
+}

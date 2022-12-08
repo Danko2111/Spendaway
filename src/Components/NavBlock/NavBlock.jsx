@@ -42,7 +42,7 @@ const NavBlock = () => {
         </div>
         <button className="navblock__logout-button">
           <LogoutIcon />
-          Log Out
+          <p className="navblock__logout-button-text">Log out</p>
         </button>
       </div>
       <div className="navblock__burger-menu" onClick={navToggleHandler}>

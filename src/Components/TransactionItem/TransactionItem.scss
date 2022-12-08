@@ -1,0 +1,37 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.transaction-item {
+    width: 100%;
+    height: 100%;
+    padding: 1rem 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+    color: $secondary-green;
+    text-transform: none;
+    &__title {
+        flex:2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    &__name {
+        white-space: nowrap;
+    }
+    &__category {
+        font-size: 0.9rem;
+        color: rgb(128, 128, 128, 0.7);
+    }
+    &__date {
+        flex:2;
+    }
+    &__amount {
+        flex:0.5;
+        text-align: start;
+        width: fit-content;
+    }
+}
