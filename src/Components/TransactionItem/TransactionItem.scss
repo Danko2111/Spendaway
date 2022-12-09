@@ -3,17 +3,17 @@
 
 .transaction-item {
     width: 100%;
+    min-width: 350px;
     height: 100%;
-    padding: 1rem 0;
+    padding: 1rem 0 1rem 2rem;
     display: flex;
-    flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
     border-bottom: 1px solid rgb(128, 128, 128, 0.5);
     color: $secondary-green;
     text-transform: none;
     &__title {
-        flex:2;
+        flex:1.5;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -28,10 +28,12 @@
     }
     &__date {
         flex:2;
+        white-space: wrap;
     }
     &__amount {
-        flex:0.5;
+        flex: 1;
         text-align: start;
         width: fit-content;
+        white-space: nowrap;
     }
 }

@@ -1,0 +1,39 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+
+.charts {
+    width: 100vw;
+    height: 100%;
+    background-color: $main-white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    @include desktop {
+        height: 100vh;
+        flex-direction: row;
+    }
+    &__content {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        color: $secondary-green;
+        @include desktop {
+            flex-direction: row;
+        }
+    }
+    &__main {
+        flex: 2;
+        height: 100%;
+        width: 100%;
+        border-radius: 8px;
+        background-color: white;
+    }
+
+}

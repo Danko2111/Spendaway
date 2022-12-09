@@ -6,11 +6,10 @@ import NavBlock from "../../Components/NavBlock/NavBlock";
 import GetTime from "../../Utils/GetTime/GetTime";
 import "./Dashboard.scss";
 
-const Dashboard = () => {
+const Dashboard = ({ transactionData, transactionDates }) => {
   const api_url = "http://localhost:5050";
   const currTime = GetTime();
   const [userInfo, setUserInfo] = useState(null);
-  const [transactionData, setTransactionData] = useState(null);
 
   const getUserInfo = () => {
     axios
@@ -23,22 +22,8 @@ const Dashboard = () => {
         setUserInfo(res.data[0]);
       });
   };
-
-  const getUserTransactions = () => {
-    axios
-      .get(`${api_url}/transactions`, {
-        headers: {
-          authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        setTransactionData(res.data);
-      });
-  };
-
   useEffect(() => {
     getUserInfo();
-    getUserTransactions();
   }, []);
 
   return userInfo && transactionData ? (
@@ -54,7 +39,10 @@ const Dashboard = () => {
               Your current balance: ${userInfo.balance}
             </p>
           </div>
-          <DashboardGraph transactionData={transactionData} />
+          <DashboardGraph
+            transactionData={transactionData}
+            transactionDates={transactionDates}
+          />
         </div>
         <DashboardAside transactionData={transactionData} />
       </div>

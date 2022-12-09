@@ -6,22 +6,31 @@
     flex:1;
     border-radius: 8px;
     background-color: white;
-    padding: 2rem 2rem 0;
+    padding: 2rem 4rem;
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    @include desktop {
+        padding: 2rem 2rem 0;
+    }
 }
 .dashboard__graph-title {
     text-align: center;
     width: 100%;
+}
+.dashboard__graph-date {
+    text-align: center;
+    width: 100%;
     border-bottom: 1px solid rgb(128, 128, 128, 0.5);
-    padding-bottom: 2rem;
+    padding:1rem 0;
+    color: rgb(128, 128, 128, 0.8);
+    text-transform: none;
 }
 .dashboard__graph-data {
     margin: auto 0;
     @include desktop {
-        max-width: 700px;
+        max-width: 500px;
     }
 }

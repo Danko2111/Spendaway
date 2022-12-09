@@ -58,7 +58,7 @@ const AuthForm = ({ bgState }) => {
               setErrClass("");
               setUserErrClass("");
               setPassErrClass("");
-              sessionStorage.setItem("token", res.data.token);
+              localStorage.setItem("token", res.data.token);
               nav("/dashboard");
             }
           })

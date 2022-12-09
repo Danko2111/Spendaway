@@ -10,7 +10,7 @@ import {
 import { Bar } from "react-chartjs-2";
 import "./DashboardGraph.scss";
 
-const DashboardGraph = ({ transactionData }) => {
+const DashboardGraph = ({ transactionData, transactionDates }) => {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -32,7 +32,7 @@ const DashboardGraph = ({ transactionData }) => {
       },
     },
   };
-  const labels = ["december"];
+  const labels = ["December"];
 
   const genGraphData = (data) => {
     const income = data
@@ -71,6 +71,9 @@ const DashboardGraph = ({ transactionData }) => {
   return transactionData ? (
     <div className="dashboard__graph-wrapper">
       <h3 className="dashboard__graph-title">overview</h3>
+      <p className="dashboard__graph-date">
+        {transactionDates.startDate} to {transactionDates.endDate}
+      </p>
       <Bar
         options={options}
         data={genGraphData(transactionData)}
