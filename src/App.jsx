@@ -13,13 +13,20 @@ function App() {
   const [transactionDates, setTransactionDates] = useState(null);
 
   const updateTransactionDates = (date1, date2) => {
-    const startDate = new Date(date1.getFullYear(), date1.getMonth(), 1)
+    const startDate = new Date(
+      date1.getFullYear(),
+      date1.getMonth(),
+      date1.getDate()
+    )
       .toISOString()
       .substring(0, 10);
-    const endDate = new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
+    const endDate = new Date(
+      date2.getFullYear(),
+      date2.getMonth(),
+      date2.getDate()
+    )
       .toISOString()
       .substring(0, 10);
-
     setTransactionDates({ startDate: startDate, endDate: endDate });
   };
 
@@ -38,7 +45,12 @@ function App() {
       });
   };
   useEffect(() => {
-    updateTransactionDates(new Date(), new Date());
+    let date1 = new Date();
+    let date2 = new Date();
+    updateTransactionDates(
+      new Date(date1.getFullYear(), date1.getMonth(), 1),
+      new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
+    );
   }, []);
 
   useEffect(() => {

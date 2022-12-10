@@ -7,10 +7,24 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import "./BarGraph.scss";
 
-const BarGraph = ({ transactionData, transactionDates }) => {
+const BarGraph = ({
+  transactionData,
+  transactionDates,
+  updateTransactionDates,
+}) => {
+  useEffect(() => {
+    let date1 = new Date();
+    let date2 = new Date();
+    updateTransactionDates(
+      new Date(date1.getFullYear(), date1.getMonth(), 1),
+      new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
+    );
+  }, []);
+
   ChartJS.register(
     CategoryScale,
     LinearScale,

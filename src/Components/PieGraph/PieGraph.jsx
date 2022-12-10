@@ -1,15 +1,35 @@
 import React, { useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import { useEffect } from "react";
 import "./PieGraph.scss";
-ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieGraph = ({ transactionData, transactionDates }) => {
+const PieGraph = ({
+  transactionData,
+  transactionDates,
+  updateTransactionDates,
+}) => {
+  useEffect(() => {
+    let date1 = new Date();
+    let date2 = new Date();
+    updateTransactionDates(
+      new Date(date1.getFullYear(), date1.getMonth(), 1),
+      new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
+    );
+  }, []);
+
+  ChartJS.register(ArcElement, Tooltip, Legend);
   const result = transactionData.reduce((acc, { category, amount }) => {
     !acc[category] ? (acc[category] = amount) : (acc[category] += amount);
     return acc;
   }, {});
-  const [graphData] = useState(result);
+
+  const [graphData, setGraphData] = useState(result);
+
+  useEffect(() => {
+    setGraphData(result);
+  }, [transactionData]);
+
   const labels = [
     "Housing",
     "Utilities",

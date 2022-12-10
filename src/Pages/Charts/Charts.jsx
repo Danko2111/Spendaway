@@ -27,6 +27,7 @@ const Charts = ({
               <PieGraph
                 transactionData={transactionData}
                 transactionDates={transactionDates}
+                updateTransactionDates={updateTransactionDates}
               />
               <div className="charts_graph-info"></div>
             </>
@@ -36,6 +37,7 @@ const Charts = ({
               <BarGraph
                 transactionData={transactionData}
                 transactionDates={transactionDates}
+                updateTransactionDates={updateTransactionDates}
               />
               <div className="charts_graph-info"></div>
             </>

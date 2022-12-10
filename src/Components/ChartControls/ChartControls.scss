@@ -26,6 +26,7 @@
         align-items: flex-start;
         padding: 1rem;
         width: 100%;
+        gap: 5rem;
     }
     &-chartpicker {
         width: 100%;
@@ -55,5 +56,25 @@
             position: absolute;
             left: 10px
         }
+    }
+    &-calendar-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    &-calendar {
+        color: $secondary-green;
+    }
+    .react-calendar__month-view__days__day {
+        color:$secondary-green; 
+    }
+    .react-calendar__tile--now, .react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus {
+        background-color: white;
+    }
+    .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus, .react-calendar__tile--active {
+        background-color:$alt-green2;
     }
 }
