@@ -12,23 +12,24 @@ function App() {
   const [transactionData, setTransactionData] = useState(null);
   const [transactionDates, setTransactionDates] = useState(null);
 
-  const getUserTransactions = () => {
-    const date = new Date();
-    const startDate = new Date(date.getFullYear(), date.getMonth(), 1)
+  const updateTransactionDates = (date1, date2) => {
+    const startDate = new Date(date1.getFullYear(), date1.getMonth(), 1)
       .toISOString()
       .substring(0, 10);
-    const endDate = new Date(date.getFullYear(), date.getMonth() + 1, 0)
+    const endDate = new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
       .toISOString()
       .substring(0, 10);
 
     setTransactionDates({ startDate: startDate, endDate: endDate });
+  };
 
+  const getUserTransactions = () => {
     axios
       .get(
-        `${api_url}/transactions?startDate=${startDate}&endDate=${endDate}`,
+        `${api_url}/transactions?startDate=${transactionDates.startDate}&endDate=${transactionDates.endDate}`,
         {
           headers: {
-            authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       )
@@ -36,42 +37,48 @@ function App() {
         setTransactionData(res.data);
       });
   };
-
   useEffect(() => {
-    getUserTransactions();
+    updateTransactionDates(new Date(), new Date());
   }, []);
 
-  return transactionData ? (
+  useEffect(() => {
+    if (transactionDates) getUserTransactions();
+  }, [transactionDates]);
+  return (
     <div className="App">
       <BrowserRouter>
         <div className="app-body">
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route
-              path="/dashboard"
-              element={
-                <Dashboard
-                  transactionData={transactionData}
-                  transactionDates={transactionDates}
-                />
-              }
-            ></Route>
-            <Route
-              path="/charts"
-              element={
-                <Charts
-                  transactionData={transactionData}
-                  transactionDates={transactionDates}
-                />
-              }
-            ></Route>
-            <Route path="/transactions" element={<Dashboard />}></Route>
-            <Route path="/settings" element={<Dashboard />}></Route>
-          </Routes>
+          {transactionData ? (
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route
+                path="/dashboard"
+                element={
+                  <Dashboard
+                    transactionData={transactionData}
+                    transactionDates={transactionDates}
+                    updateTransactionDates={updateTransactionDates}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/charts"
+                element={
+                  <Charts
+                    transactionData={transactionData}
+                    transactionDates={transactionDates}
+                    updateTransactionDates={updateTransactionDates}
+                  />
+                }
+              ></Route>
+              <Route path="/transactions" element={<Dashboard />}></Route>
+              <Route path="/settings" element={<Dashboard />}></Route>
+            </Routes>
+          ) : null}
         </div>
       </BrowserRouter>
     </div>
-  ) : null;
+  );
 }
 
 export default App;

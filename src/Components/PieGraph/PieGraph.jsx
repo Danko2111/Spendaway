@@ -10,7 +10,7 @@ const PieGraph = ({ transactionData, transactionDates }) => {
     !acc[category] ? (acc[category] = amount) : (acc[category] += amount);
     return acc;
   }, {});
-  const [graphData, setGraphData] = useState(result);
+  const [graphData] = useState(result);
   const labels = [
     "Housing",
     "Utilities",
@@ -27,13 +27,13 @@ const PieGraph = ({ transactionData, transactionDates }) => {
         label: "$ Spent",
         data: labels.map((item) => graphData[item]),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-          "rgba(40, 255, 225, 0.2)",
+          "rgba(255, 99, 132, 0.5)",
+          "rgba(54, 162, 235, 0.5)",
+          "rgba(255, 206, 86, 0.5)",
+          "rgba(75, 192, 192, 0.5)",
+          "rgba(153, 102, 255, 0.5)",
+          "rgba(255, 159, 64, 0.5)",
+          "rgba(40, 255, 225, 0.5)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -51,7 +51,7 @@ const PieGraph = ({ transactionData, transactionDates }) => {
   return (
     <div className="charts__graph">
       <div className="charts__graph-heading">
-        <h2 className="charts__graph-title">monthly spending</h2>
+        <h3 className="charts__graph-title">Category Spending</h3>
         <p className="charts__graph-date">
           {transactionDates.startDate} to {transactionDates.endDate}
         </p>

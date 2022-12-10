@@ -8,9 +8,18 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import "./DashboardGraph.scss";
+import "./BarGraph.scss";
+import { useEffect } from "react";
 
-const DashboardGraph = ({ transactionData, transactionDates }) => {
+const BarGraph = ({
+  transactionData,
+  transactionDates,
+  updateTransactionDates,
+}) => {
+  useEffect(() => {
+    updateTransactionDates(new Date(), new Date());
+  }, []);
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -57,20 +66,20 @@ const DashboardGraph = ({ transactionData, transactionDates }) => {
         {
           label: "Income",
           data: [income],
-          backgroundColor: "rgba(97, 175, 161, 0.75)",
+          backgroundColor: "rgba(245, 151, 39, 0.8)",
         },
         {
           label: "Spendings",
           data: [spending],
-          backgroundColor: "rgba(16, 70, 63, 0.75)",
+          backgroundColor: "rgba(39, 185, 245, 0.8)",
         },
       ],
     };
   };
 
-  return transactionData ? (
+  return (
     <div className="dashboard__graph-wrapper">
-      <h3 className="dashboard__graph-title">overview</h3>
+      <h3 className="dashboard__graph-title">Income vs Spending</h3>
       <p className="dashboard__graph-date">
         {transactionDates.startDate} to {transactionDates.endDate}
       </p>
@@ -82,7 +91,7 @@ const DashboardGraph = ({ transactionData, transactionDates }) => {
         width={800}
       />
     </div>
-  ) : null;
+  );
 };
 
-export default DashboardGraph;
+export default BarGraph;

@@ -1,12 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import DashboardAside from "../../Components/DashboardAside/DashboardAside";
-import DashboardGraph from "../../Components/DashboardGraph/DashboardGraph";
+import BarGraph from "../../Components/BarGraph/BarGraph";
 import NavBlock from "../../Components/NavBlock/NavBlock";
 import GetTime from "../../Utils/GetTime/GetTime";
 import "./Dashboard.scss";
 
-const Dashboard = ({ transactionData, transactionDates }) => {
+const Dashboard = ({
+  transactionData,
+  transactionDates,
+  updateTransactionDates,
+}) => {
   const api_url = "http://localhost:5050";
   const currTime = GetTime();
   const [userInfo, setUserInfo] = useState(null);
@@ -15,18 +19,18 @@ const Dashboard = ({ transactionData, transactionDates }) => {
     axios
       .get(`${api_url}/users`, {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
         setUserInfo(res.data[0]);
       });
   };
+
   useEffect(() => {
     getUserInfo();
   }, []);
-
-  return userInfo && transactionData ? (
+  return userInfo ? (
     <div className="dashboard">
       <NavBlock />
       <div className="dashboard__content">
@@ -39,9 +43,10 @@ const Dashboard = ({ transactionData, transactionDates }) => {
               Your current balance: ${userInfo.balance}
             </p>
           </div>
-          <DashboardGraph
+          <BarGraph
             transactionData={transactionData}
             transactionDates={transactionDates}
+            updateTransactionDates={updateTransactionDates}
           />
         </div>
         <DashboardAside transactionData={transactionData} />
