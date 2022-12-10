@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import BarGraph from "../../Components/BarGraph/BarGraph";
 import ChartControls from "../../Components/ChartControls/ChartConrols";
 import NavBlock from "../../Components/NavBlock/NavBlock";
@@ -27,7 +27,6 @@ const Charts = ({
               <PieGraph
                 transactionData={transactionData}
                 transactionDates={transactionDates}
-                updateTransactionDates={updateTransactionDates}
               />
               <div className="charts_graph-info"></div>
             </>
@@ -37,7 +36,6 @@ const Charts = ({
               <BarGraph
                 transactionData={transactionData}
                 transactionDates={transactionDates}
-                updateTransactionDates={updateTransactionDates}
               />
               <div className="charts_graph-info"></div>
             </>

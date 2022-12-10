@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import "./PieGraph.scss";
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieGraph = ({ transactionData, transactionDates }) => {
-  ChartJS.register(ArcElement, Tooltip, Legend);
-
   const result = transactionData.reduce((acc, { category, amount }) => {
     !acc[category] ? (acc[category] = amount) : (acc[category] += amount);
     return acc;
@@ -49,14 +48,14 @@ const PieGraph = ({ transactionData, transactionDates }) => {
     ],
   };
   return (
-    <div className="charts__graph">
-      <div className="charts__graph-heading">
-        <h3 className="charts__graph-title">Category Spending</h3>
-        <p className="charts__graph-date">
+    <div className="pie-charts__graph">
+      <div className="pie-charts__graph-heading">
+        <h3 className="pie-charts__graph-title">Category Spending</h3>
+        <p className="pie-charts__graph-date">
           {transactionDates.startDate} to {transactionDates.endDate}
         </p>
       </div>
-      <div className="charts__graph-data">
+      <div className="pie-charts__graph-data">
         <Pie data={data} />
       </div>
     </div>

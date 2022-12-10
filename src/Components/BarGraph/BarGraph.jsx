@@ -9,17 +9,8 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import "./BarGraph.scss";
-import { useEffect } from "react";
 
-const BarGraph = ({
-  transactionData,
-  transactionDates,
-  updateTransactionDates,
-}) => {
-  useEffect(() => {
-    updateTransactionDates(new Date(), new Date());
-  }, []);
-
+const BarGraph = ({ transactionData, transactionDates }) => {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -28,7 +19,6 @@ const BarGraph = ({
     Tooltip,
     Legend
   );
-
   const options = {
     responsive: true,
     plugins: {
@@ -83,13 +73,9 @@ const BarGraph = ({
       <p className="dashboard__graph-date">
         {transactionDates.startDate} to {transactionDates.endDate}
       </p>
-      <Bar
-        options={options}
-        data={genGraphData(transactionData)}
-        className="dashboard__graph-data"
-        height={400}
-        width={800}
-      />
+      <div className="dashboard__graph-data">
+        <Bar options={options} data={genGraphData(transactionData)} />
+      </div>
     </div>
   );
 };

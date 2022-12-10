@@ -44,37 +44,39 @@ function App() {
   useEffect(() => {
     if (transactionDates) getUserTransactions();
   }, [transactionDates]);
+
   return (
     <div className="App">
       <BrowserRouter>
         <div className="app-body">
-          {transactionData ? (
-            <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route
-                path="/dashboard"
-                element={
-                  <Dashboard
-                    transactionData={transactionData}
-                    transactionDates={transactionDates}
-                    updateTransactionDates={updateTransactionDates}
-                  />
-                }
-              ></Route>
-              <Route
-                path="/charts"
-                element={
-                  <Charts
-                    transactionData={transactionData}
-                    transactionDates={transactionDates}
-                    updateTransactionDates={updateTransactionDates}
-                  />
-                }
-              ></Route>
-              <Route path="/transactions" element={<Dashboard />}></Route>
-              <Route path="/settings" element={<Dashboard />}></Route>
-            </Routes>
-          ) : null}
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            {transactionData ? (
+              <>
+                <Route
+                  path="/dashboard"
+                  element={
+                    <Dashboard
+                      transactionData={transactionData}
+                      transactionDates={transactionDates}
+                      updateTransactionDates={updateTransactionDates}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path="/charts"
+                  element={
+                    <Charts
+                      transactionData={transactionData}
+                      transactionDates={transactionDates}
+                      updateTransactionDates={updateTransactionDates}
+                    />
+                  }
+                ></Route>
+                <Route path="/transactions" element={<Dashboard />}></Route>
+              </>
+            ) : null}
+          </Routes>
         </div>
       </BrowserRouter>
     </div>

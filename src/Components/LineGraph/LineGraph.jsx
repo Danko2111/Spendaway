@@ -10,35 +10,13 @@ import {
   Legend,
 } from "chart.js";
 import { useEffect, useState } from "react";
+import HashTransactions from "../../Utils/GetTime/HashTransactions.jsx/HashTransactions";
 
 const LineGraph = ({
   transactionData,
   transactionDates,
   updateTransactionDates,
 }) => {
-  useEffect(() => {
-    updateTransactionDates(new Date("2022-07-25"), new Date("2022-12-20"));
-  }, []);
-
-  const hash = {};
-  const transactionArr = [];
-  transactionData.map((transaction) => {
-    const month = new Date(transaction.date).getMonth();
-
-    if (!hash[month]) {
-      hash[month] = transaction.amount;
-    } else {
-      hash[month] += transaction.amount;
-    }
-
-    return {
-      month: month,
-      amount: transaction.amount,
-    };
-  });
-  for (let i = 6; i < 12; i++) {
-    transactionArr.push(hash[i]);
-  }
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -47,6 +25,14 @@ const LineGraph = ({
     Tooltip,
     Legend
   );
+
+  useEffect(() => {
+    updateTransactionDates(new Date("2022-06-25"), new Date("2022-12-20"));
+  }, []);
+
+  const incomeArr = HashTransactions(transactionData, "Income");
+  const spendArr = HashTransactions(transactionData, "Spending");
+
   const options = {
     responsive: true,
     plugins: {
@@ -55,47 +41,36 @@ const LineGraph = ({
       },
     },
   };
-
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
-
   const data = {
-    labels,
+    labels: incomeArr[0],
     datasets: [
       {
-        label: "Income",
-        data: [transactionArr],
+        label: "$ Income",
+        data: incomeArr[1],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
-        label: "Spending",
-        data: [],
+        label: "$ Spending",
+        data: spendArr[1],
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
     ],
   };
-  return (
-    <div className="charts__graph">
-      <div className="charts__graph-heading">
-        <h3 className="charts__graph-title">Spending over time</h3>
-        <p className="charts__graph-date">
+  return transactionData ? (
+    <div className="line-charts__graph">
+      <div className="line-charts__graph-heading">
+        <h3 className="line-charts__graph-title">Spending over time</h3>
+        <p className="line-charts__graph-date">
           {transactionDates.startDate} to {transactionDates.endDate}
         </p>
       </div>
-      <div className="charts__graph-data">
+      <div className="line-charts__graph-data">
         <Line options={options} data={data} />
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default LineGraph;
