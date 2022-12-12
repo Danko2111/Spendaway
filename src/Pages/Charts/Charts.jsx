@@ -21,43 +21,38 @@ const Charts = ({
     <div className="charts">
       <NavBlock />
       <div className="charts__content">
-        <div className="charts__main">
-          {selectedGraph === "pie" && (
-            <>
-              <PieGraph
-                transactionData={transactionData}
-                transactionDates={transactionDates}
-                updateTransactionDates={updateTransactionDates}
-              />
-              <div className="charts_graph-info"></div>
-            </>
-          )}
-          {selectedGraph === "bar" && (
-            <>
-              <BarGraph
-                transactionData={transactionData}
-                transactionDates={transactionDates}
-                updateTransactionDates={updateTransactionDates}
-              />
-              <div className="charts_graph-info"></div>
-            </>
-          )}
-          {selectedGraph === "line" && (
-            <>
-              <LineGraph
-                transactionData={transactionData}
-                transactionDates={transactionDates}
-                updateTransactionDates={updateTransactionDates}
-              />
-              <div className="charts_graph-info"></div>
-            </>
-          )}
-        </div>
-        <ChartControls
-          updateSelectedGraph={updateSelectedGraph}
-          updateTransactionDates={updateTransactionDates}
-        />
+        {selectedGraph === "pie" && (
+          <>
+            <PieGraph
+              transactionData={transactionData}
+              transactionDates={transactionDates}
+              updateTransactionDates={updateTransactionDates}
+            />
+          </>
+        )}
+        {selectedGraph === "bar" && (
+          <>
+            <BarGraph
+              transactionData={transactionData}
+              transactionDates={transactionDates}
+              updateTransactionDates={updateTransactionDates}
+            />
+          </>
+        )}
+        {selectedGraph === "line" && (
+          <>
+            <LineGraph
+              transactionData={transactionData}
+              transactionDates={transactionDates}
+              updateTransactionDates={updateTransactionDates}
+            />
+          </>
+        )}
       </div>
+      <ChartControls
+        updateSelectedGraph={updateSelectedGraph}
+        updateTransactionDates={updateTransactionDates}
+      />
     </div>
   );
 };

@@ -22,18 +22,11 @@
         justify-content: space-around;
         align-items: flex-start;
         flex-wrap: nowrap;
-        gap: 1rem;
         color: $secondary-green;
         @include desktop {
             flex-direction: row;
+            overflow: scroll;
         }
-    }
-    &__main {
-        flex: 2;
-        height: 100%;
-        width: 100%;
-        border-radius: 8px;
-        background-color: white;
     }
 
 }

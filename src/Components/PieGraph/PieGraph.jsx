@@ -19,6 +19,7 @@ const PieGraph = ({
   }, []);
 
   ChartJS.register(ArcElement, Tooltip, Legend);
+
   const result = transactionData.reduce((acc, { category, amount }) => {
     !acc[category] ? (acc[category] = amount) : (acc[category] += amount);
     return acc;
@@ -68,15 +69,30 @@ const PieGraph = ({
     ],
   };
   return (
-    <div className="pie-charts__graph">
-      <div className="pie-charts__graph-heading">
-        <h3 className="pie-charts__graph-title">Category Spending</h3>
-        <p className="pie-charts__graph-date">
-          {transactionDates.startDate} to {transactionDates.endDate}
-        </p>
+    <div className="charts__main">
+      <div className="pie-charts__graph">
+        <div className="pie-charts__graph-heading">
+          <h3 className="pie-charts__graph-title">Category Spending</h3>
+          <p className="pie-charts__graph-date">
+            {transactionDates.startDate} to {transactionDates.endDate}
+          </p>
+        </div>
+        <div className="pie-charts__graph-data">
+          <Pie data={data} />
+        </div>
       </div>
-      <div className="pie-charts__graph-data">
-        <Pie data={data} />
+      <div className="pie-charts__graph-info">
+        <h3 className="pie-charts__graph-info-title">Category Breakdown</h3>
+        {labels.map((category) => {
+          return (
+            <div className="pie-charts__graph-category">
+              <p className="pie-charts__graph-category-name">{category}</p>
+              <p className="pie-charts__graph-category-amount">
+                ${parseFloat(graphData[category]).toFixed(2)}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

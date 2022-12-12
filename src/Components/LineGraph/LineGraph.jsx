@@ -10,7 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { useEffect, useState } from "react";
-import HashTransactions from "../../Utils/GetTime/HashTransactions.jsx/HashTransactions";
+import HashTransactions from "../../Utils/HashTransactions/HashTransactions";
 
 const LineGraph = ({
   transactionData,
@@ -58,19 +58,22 @@ const LineGraph = ({
       },
     ],
   };
-  return transactionData ? (
-    <div className="line-charts__graph">
-      <div className="line-charts__graph-heading">
-        <h3 className="line-charts__graph-title">Spending over time</h3>
-        <p className="line-charts__graph-date">
-          {transactionDates.startDate} to {transactionDates.endDate}
-        </p>
+  return (
+    <div className="charts__main">
+      <div className="line-charts__graph">
+        <div className="line-charts__graph-heading">
+          <h3 className="line-charts__graph-title">Spending over time</h3>
+          <p className="line-charts__graph-date">
+            {transactionDates.startDate} to {transactionDates.endDate}
+          </p>
+        </div>
+        <div className="line-charts__graph-data">
+          <Line options={options} data={data} />
+        </div>
       </div>
-      <div className="line-charts__graph-data">
-        <Line options={options} data={data} />
-      </div>
+      <div className="charts__graph-info"></div>
     </div>
-  ) : null;
+  );
 };
 
 export default LineGraph;

@@ -82,14 +82,17 @@ const BarGraph = ({
   };
 
   return (
-    <div className="dashboard__graph-wrapper">
-      <h3 className="dashboard__graph-title">Income vs Spending</h3>
-      <p className="dashboard__graph-date">
-        {transactionDates.startDate} to {transactionDates.endDate}
-      </p>
-      <div className="dashboard__graph-data">
-        <Bar options={options} data={genGraphData(transactionData)} />
+    <div className="charts__main">
+      <div className="dashboard__graph-wrapper">
+        <h3 className="dashboard__graph-title">Income vs Spending</h3>
+        <p className="dashboard__graph-date">
+          {transactionDates.startDate} to {transactionDates.endDate}
+        </p>
+        <div className="dashboard__graph-data">
+          <Bar options={options} data={genGraphData(transactionData)} />
+        </div>
       </div>
+      <div className="charts__graph-info"></div>
     </div>
   );
 };
