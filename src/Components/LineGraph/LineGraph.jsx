@@ -80,7 +80,7 @@ const LineGraph = ({
             <h4 className="line-charts__graph-info-income-title">Income</h4>
             {incomeArr[0].map((monthly, index) => {
               return (
-                <div className="line-charts__graph-info-item">
+                <div className="line-charts__graph-info-item" key={index}>
                   <p className="line-charts__graph-info-income-month">
                     {monthly}
                   </p>
@@ -95,7 +95,7 @@ const LineGraph = ({
             <h4 className="line-charts__graph-info-spending-title">Spending</h4>
             {spendArr[0].map((monthly, index) => {
               return (
-                <div className="line-charts__graph-info-item">
+                <div className="line-charts__graph-info-item" key={index}>
                   <p className="line-charts__graph-info-spending-month">
                     {monthly}
                   </p>

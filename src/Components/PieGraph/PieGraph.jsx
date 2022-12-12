@@ -83,9 +83,9 @@ const PieGraph = ({
       </div>
       <div className="pie-charts__graph-info">
         <h3 className="pie-charts__graph-info-title">Category Breakdown</h3>
-        {labels.map((category) => {
+        {labels.map((category, index) => {
           return (
-            <div className="pie-charts__graph-category">
+            <div className="pie-charts__graph-category" key={index}>
               <p className="pie-charts__graph-category-name">{category}</p>
               <p className="pie-charts__graph-category-amount">
                 - ${parseFloat(graphData[category]).toFixed(2)}

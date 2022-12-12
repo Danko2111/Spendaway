@@ -3,37 +3,62 @@
 
 .transaction-item {
     width: 100%;
-    min-width: 350px;
+    min-width: 150px;
     height: 100%;
-    padding: 1rem 0 1rem 2rem;
+    padding: 1rem 1rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
+    gap: 1rem;
     border-bottom: 1px solid rgb(128, 128, 128, 0.5);
     color: $secondary-green;
     text-transform: none;
+    @include tablet {
+        padding: 1rem 0 1rem 2rem;
+        min-width: 350px;
+        align-items: center;
+        gap: 0;
+        flex-wrap: unset;
+    }
     &__title {
-        flex:1.5;
+        width: 40%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
+        @include tablet{
+            flex:1.5;
+            width: unset;
+        }
     }
     &__name {
-        white-space: nowrap;
+        height: 100%;
     }
     &__category {
         font-size: 0.9rem;
         color: rgb(128, 128, 128, 0.7);
     }
     &__date {
-        flex:2;
+        margin-left: auto;
+        width: 40%;
         white-space: wrap;
+        text-align: end;
+        @include tablet {
+            flex:2;
+            width: unset;
+            text-align: start;
+        }
     }
     &__amount {
-        flex: 1;
-        text-align: start;
-        width: fit-content;
+        width: 100%;
+        text-align: end;
         white-space: nowrap;
+        @include tablet {
+            flex:1;
+            width: fit-content;
+            text-align: start;
+            width: unset;
+        }
     }
 }

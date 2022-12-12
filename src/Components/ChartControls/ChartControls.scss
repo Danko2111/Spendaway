@@ -3,7 +3,7 @@
 
 .charts__controls {
     flex: 1;
-    margin: 0 1rem 1rem;
+    margin: 0 2rem 2rem;
     padding: 1rem;
     border-radius: 8px;
     background-color: white;
@@ -14,14 +14,17 @@
     color: $secondary-green;
     @include desktop {
         width: 100%;
-        margin: 1rem 1rem 1rem 0;
+        margin: 2rem 2rem 2rem 0;
     }
     &-title {
         text-transform: uppercase;
         text-align: center;
         width: 100%;
-        padding-bottom: 3rem;
+        padding:1rem 0 2rem;
         border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+        @include desktop {
+            padding:1rem 0 3rem;
+        }
     }
     &-main {
         display: flex;

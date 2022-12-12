@@ -86,7 +86,16 @@ function App() {
                     />
                   }
                 ></Route>
-                <Route path="/transactions" element={<Transactions />}></Route>
+                <Route
+                  path="/transactions"
+                  element={
+                    <Transactions
+                      transactionData={transactionData}
+                      transactionDates={transactionDates}
+                      updateTransactionDates={updateTransactionDates}
+                    />
+                  }
+                ></Route>
               </>
             ) : null}
           </Routes>

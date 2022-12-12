@@ -80,7 +80,6 @@ const BarGraph = ({
       ],
     };
   };
-  console.log(genGraphData(transactionData).datasets[1].data[0]);
   return (
     <div className="charts__main">
       <div className="bar-charts__graph-wrapper">

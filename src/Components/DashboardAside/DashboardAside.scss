@@ -40,4 +40,23 @@
             display: none;  /* Safari and Chrome */
         }
     }
+    .transaction-labels {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 2rem 2rem 2rem 4rem;
+        &-name {
+            flex: 1.5;
+        }
+        &-date {
+            flex:2;
+        }
+        &-amount {
+            flex:1;
+            text-align: start;
+            width: fit-content;
+            white-space: nowrap;
+        }
+    }
 }
