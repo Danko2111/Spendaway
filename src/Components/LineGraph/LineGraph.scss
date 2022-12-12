@@ -64,5 +64,49 @@
                 max-width: 1000px;
             }
         }
+        &-info {
+            padding: 2rem;
+            border-radius: 8px;
+            background-color: white;
+            height: fit-content;
+            width: 100%;
+        }
+        &-info-title {
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+            padding: 0 0 2rem;
+        }
+        &-info-split {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        &-info-income, &-info-spending {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+        &-info-income{
+            border-right: 1px solid rgb(128, 128, 128, 0.5);
+        }
+        &-info-spending-title, &-info-income-title {
+            margin: 2rem;
+        }
+        &-info-spending {
+            width: 50%;
+        }
+        &-info-item {
+            width: 100%;
+            height: fit-content;
+            color: $secondary-green;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin:0 auto;
+            padding:2rem;
+            border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+        }
     }
 }

@@ -39,7 +39,7 @@ const ChartControls = ({ updateSelectedGraph, updateTransactionDates }) => {
             onClick={() => updateSelectedGraph("line")}
           >
             <TimelineIcon className="charts__controls-chart-icon" />
-            Spending over time
+            Spending/Income over time
           </li>
         </ul>
 

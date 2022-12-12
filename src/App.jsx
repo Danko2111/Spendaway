@@ -5,6 +5,7 @@ import "./App.scss";
 import Charts from "./Pages/Charts/Charts";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Home from "./Pages/Home/Home";
+import Transactions from "./Pages/Transactions/Transactions";
 
 function App() {
   const api_url = "http://localhost:5050";
@@ -85,7 +86,7 @@ function App() {
                     />
                   }
                 ></Route>
-                <Route path="/transactions" element={<Dashboard />}></Route>
+                <Route path="/transactions" element={<Transactions />}></Route>
               </>
             ) : null}
           </Routes>

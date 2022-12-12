@@ -25,7 +25,11 @@
         color: $secondary-green;
         @include desktop {
             flex-direction: row;
-            overflow: scroll;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            &::-webkit-scrollbar { 
+                display: none;  /* Safari and Chrome */
+            }
         }
     }
 

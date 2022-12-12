@@ -9,6 +9,8 @@ const PieGraph = ({
   transactionDates,
   updateTransactionDates,
 }) => {
+  ChartJS.register(ArcElement, Tooltip, Legend);
+
   useEffect(() => {
     let date1 = new Date();
     let date2 = new Date();
@@ -17,8 +19,6 @@ const PieGraph = ({
       new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
     );
   }, []);
-
-  ChartJS.register(ArcElement, Tooltip, Legend);
 
   const result = transactionData.reduce((acc, { category, amount }) => {
     !acc[category] ? (acc[category] = amount) : (acc[category] += amount);
@@ -88,7 +88,7 @@ const PieGraph = ({
             <div className="pie-charts__graph-category">
               <p className="pie-charts__graph-category-name">{category}</p>
               <p className="pie-charts__graph-category-amount">
-                ${parseFloat(graphData[category]).toFixed(2)}
+                - ${parseFloat(graphData[category]).toFixed(2)}
               </p>
             </div>
           );

@@ -1,0 +1,15 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.transactions {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: $main-white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    @include desktop {
+        height: 100vh;
+        flex-direction: row;
+    }
+}

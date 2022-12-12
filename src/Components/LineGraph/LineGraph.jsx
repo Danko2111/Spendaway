@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import HashTransactions from "../../Utils/HashTransactions/HashTransactions";
 
 const LineGraph = ({
@@ -27,7 +27,7 @@ const LineGraph = ({
   );
 
   useEffect(() => {
-    updateTransactionDates(new Date("2022-06-25"), new Date("2022-12-20"));
+    updateTransactionDates(new Date("2022-06-01"), new Date("2022-12-31"));
   }, []);
 
   const incomeArr = HashTransactions(transactionData, "Income");
@@ -62,7 +62,9 @@ const LineGraph = ({
     <div className="charts__main">
       <div className="line-charts__graph">
         <div className="line-charts__graph-heading">
-          <h3 className="line-charts__graph-title">Spending over time</h3>
+          <h3 className="line-charts__graph-title">
+            Spending/Income over time
+          </h3>
           <p className="line-charts__graph-date">
             {transactionDates.startDate} to {transactionDates.endDate}
           </p>
@@ -71,7 +73,41 @@ const LineGraph = ({
           <Line options={options} data={data} />
         </div>
       </div>
-      <div className="charts__graph-info"></div>
+      <div className="line-charts__graph-info">
+        <h3 className="line-charts__graph-info-title">Monthly Breakdown</h3>
+        <div className="line-charts__graph-info-split">
+          <div className="line-charts__graph-info-income">
+            <h4 className="line-charts__graph-info-income-title">Income</h4>
+            {incomeArr[0].map((monthly, index) => {
+              return (
+                <div className="line-charts__graph-info-item">
+                  <p className="line-charts__graph-info-income-month">
+                    {monthly}
+                  </p>
+                  <p className="line-charts__graph-info-income-amount">
+                    + ${parseFloat(incomeArr[1][index]).toFixed(2)}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <div className="line-charts__graph-info-spending">
+            <h4 className="line-charts__graph-info-spending-title">Spending</h4>
+            {spendArr[0].map((monthly, index) => {
+              return (
+                <div className="line-charts__graph-info-item">
+                  <p className="line-charts__graph-info-spending-month">
+                    {monthly}
+                  </p>
+                  <p className="line-charts__graph-info-spending-amount">
+                    - ${parseFloat(spendArr[1][index]).toFixed(2)}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

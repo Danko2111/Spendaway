@@ -80,19 +80,43 @@ const BarGraph = ({
       ],
     };
   };
-
+  console.log(genGraphData(transactionData).datasets[1].data[0]);
   return (
     <div className="charts__main">
-      <div className="dashboard__graph-wrapper">
-        <h3 className="dashboard__graph-title">Income vs Spending</h3>
-        <p className="dashboard__graph-date">
+      <div className="bar-charts__graph-wrapper">
+        <h3 className="bar-charts__graph-title">Income vs Spending</h3>
+        <p className="bar-charts__graph-date">
           {transactionDates.startDate} to {transactionDates.endDate}
         </p>
-        <div className="dashboard__graph-data">
+        <div className="bar-charts__graph-data">
           <Bar options={options} data={genGraphData(transactionData)} />
         </div>
       </div>
-      <div className="charts__graph-info"></div>
+      <div className="bar-charts__graph-info">
+        <h3 className="bar-charts__graph-info-title">Money In/Out Breakdown</h3>
+        <div className="bar-charts__graph-category">
+          <p className="bar-charts__graph-category-name">
+            {genGraphData(transactionData).datasets[0].label}
+          </p>
+          <p className="bar-charts__graph-category-amount">
+            + $
+            {parseFloat(
+              genGraphData(transactionData).datasets[0].data[0]
+            ).toFixed(2)}
+          </p>
+        </div>
+        <div className="bar-charts__graph-category">
+          <p className="bar-charts__graph-category-name">
+            {genGraphData(transactionData).datasets[1].label}
+          </p>
+          <p className="bar-charts__graph-category-amount">
+            - $
+            {parseFloat(
+              genGraphData(transactionData).datasets[1].data[0]
+            ).toFixed(2)}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
