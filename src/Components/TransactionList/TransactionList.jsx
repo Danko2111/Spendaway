@@ -18,6 +18,16 @@ const TransactionList = ({
   const [amountSort, setAmountSort] = useState("");
   const [sortedData, setSortedData] = useState(transactionData);
   const [calState, setCalState] = useState("");
+
+  useEffect(() => {
+    let date1 = new Date();
+    let date2 = new Date();
+    updateTransactionDates(
+      new Date(date1.getFullYear(), date1.getMonth(), 1),
+      new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
+    );
+  }, []);
+
   const handleSortButton = (event) => {
     switch (event.target.name) {
       case "category":
@@ -144,43 +154,49 @@ const TransactionList = ({
       </div>
       <div className="transaction-labels">
         <div className="transaction-labels-name-wrapper">
-          <button
-            className="transaction-labels-name"
-            name="category"
-            onClick={(e) => {
-              handleSortButton(e);
-            }}
-          >
-            Name/Category{" "}
+          <div className="transaction-labels-button-wrapper">
+            <button
+              className="transaction-labels-name"
+              name="category"
+              onClick={(e) => {
+                handleSortButton(e);
+              }}
+            >
+              Name/Category{" "}
+            </button>
             <SwitchRightOutlinedIcon
               className={`transaction-labels-sort${catSort}`}
             />
-          </button>
+          </div>
         </div>
         <div className="transaction-labels-date-wrapper">
-          <button
-            className="transaction-labels-date"
-            name="date"
-            onClick={(e) => handleSortButton(e)}
-          >
-            Date{" "}
+          <div className="transaction-labels-button-wrapper">
+            <button
+              className="transaction-labels-date"
+              name="date"
+              onClick={(e) => handleSortButton(e)}
+            >
+              Date{" "}
+            </button>
             <SwitchRightOutlinedIcon
               className={`transaction-labels-sort${dateSort}`}
             />
-          </button>
+          </div>
         </div>
         <div className="transaction-labels-amount-wrapper">
           {" "}
-          <button
-            className="transaction-labels-amount"
-            name="amount"
-            onClick={(e) => handleSortButton(e)}
-          >
-            Amount{" "}
+          <div className="transaction-labels-button-wrapper">
+            <button
+              className="transaction-labels-amount"
+              name="amount"
+              onClick={(e) => handleSortButton(e)}
+            >
+              Amount{" "}
+            </button>
             <SwitchRightOutlinedIcon
               className={`transaction-labels-sort${amountSort}`}
             />
-          </button>
+          </div>
         </div>
       </div>
       <ul className="transaction-list__items">
