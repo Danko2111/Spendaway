@@ -7,7 +7,6 @@
     background-color: $main-white;
     display: flex;
     flex-direction: column;
-    position: relative;
     @include desktop {
         height: 100vh;
         flex-direction: row;
@@ -26,6 +25,7 @@
         margin-top: 92px;
         @include tablet {
             margin-top: 132px;
+            position: relative;
         }
         @include desktop {
             margin-top: 0;

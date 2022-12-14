@@ -6,6 +6,7 @@ import { Calendar } from "react-calendar";
 import { useState, useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
 import "./TransactionList.scss";
+import AddTransactionModal from "../AddTransactionModal/AddTransactionModal";
 
 const TransactionList = ({
   transactionData,
@@ -18,6 +19,7 @@ const TransactionList = ({
   const [amountSort, setAmountSort] = useState("");
   const [sortedData, setSortedData] = useState(transactionData);
   const [calState, setCalState] = useState("");
+  const [modalVis, setModalVis] = useState("");
 
   useEffect(() => {
     let date1 = new Date();
@@ -28,6 +30,13 @@ const TransactionList = ({
     );
   }, []);
 
+  const handleModalVis = () => {
+    if (!modalVis) {
+      setModalVis("--open");
+    } else {
+      setModalVis("");
+    }
+  };
   const handleSortButton = (event) => {
     switch (event.target.name) {
       case "category":
@@ -117,13 +126,20 @@ const TransactionList = ({
       setCalState("");
     }
     if (dateRange) {
-      console.log(dateRange);
       updateTransactionDates(dateRange[0], dateRange[1]);
     }
   }, [dateRange]);
 
+  useEffect(() => {
+    setSortedData(transactionData);
+  }, [transactionData]);
+
   return (
     <div className="transaction-list">
+      <AddTransactionModal
+        modalVis={modalVis}
+        handleModalVis={handleModalVis}
+      />
       <div className="transaction-list__header">
         <h3 className="transaction-list__title">transactions</h3>
         <p
@@ -150,7 +166,12 @@ const TransactionList = ({
           returnValue="range"
           value={dateRange}
         />
-        <AddCardIcon className="transaction-list__addbutton" />
+        <div
+          className="transaction-list__addbutton-wrapper"
+          onClick={handleModalVis}
+        >
+          <AddCardIcon className="transaction-list__addbutton" />
+        </div>
       </div>
       <div className="transaction-labels">
         <div className="transaction-labels-name-wrapper">

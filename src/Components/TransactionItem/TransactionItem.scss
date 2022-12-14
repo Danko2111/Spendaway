@@ -12,7 +12,7 @@
     align-items: flex-start;
     gap: 1rem;
     border-bottom: 1px solid rgb(128, 128, 128, 0.5);
-    background-color: whitesmoke;
+    background-image: linear-gradient(to bottom right,rgb(252, 252, 252) , rgba(238, 238, 238, 0.5));
     color: $secondary-green;
     text-transform: none;
     @include tablet {

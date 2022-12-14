@@ -11,6 +11,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    z-index: 5;
     @include tablet {
         padding:0 2rem;
     }
@@ -22,9 +23,9 @@
         flex-direction: column-reverse;
         justify-content: flex-start;
         align-items: flex-start;
-        
+        box-shadow:0 2px 10px rgb(128, 128, 128, 0.2);
         @include tablet {
-            padding: 2rem;
+            margin: 1rem 2rem;
         }
     }
     &__header {
@@ -64,16 +65,31 @@
         }
     }
     &__addbutton {
-        order: 2;
-        margin: 0 auto 0.5rem;
-        position: relative;
-        @include tablet {
-            position: absolute;
-            margin: unset;
-            right: 35px;
-            top: 25%;
-            cursor: pointer;
-        } 
+        color: white;
+        &-wrapper {
+            order: 2;
+            position: relative;
+            margin: 0 auto 0.5rem;
+            height: fit-content;
+            width: fit-content;
+            background-color: $secondary-green;
+            border-radius: 50%;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include tablet {
+                position: absolute;
+                margin: unset;
+                right: 35px;
+                top: 25%;
+                cursor: pointer;
+            } 
+            &:active {
+                transform: scale(0.98);
+            }
+        }
+        
     }
     &__calendar {
         display: none;
@@ -117,6 +133,7 @@
             width: fit-content;
             border:none;
             background-color: white;
+            color: $secondary-green;
             cursor: pointer;
             position: relative;
             &-wrapper {
@@ -127,6 +144,7 @@
             width: fit-content;
             border:none;
             background-color: white;
+            color: $secondary-green;
             cursor: pointer;
             &-wrapper {
                 flex:2;
@@ -138,6 +156,7 @@
             white-space: nowrap;
             border:none;
             background-color: white;
+            color: $secondary-green;
             cursor: pointer;
             &-wrapper {
                 flex:1;
