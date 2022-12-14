@@ -31,9 +31,10 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        overflow-y: scroll;
         padding: 1rem;
         width: 100%;
-        gap: 5rem;
+        gap: 2rem;
     }
     &-chartpicker {
         width: 100%;

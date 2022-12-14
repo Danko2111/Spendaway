@@ -12,6 +12,7 @@
     align-items: flex-start;
     gap: 1rem;
     border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+    background-color: whitesmoke;
     color: $secondary-green;
     text-transform: none;
     @include tablet {
@@ -61,4 +62,5 @@
             width: unset;
         }
     }
+
 }

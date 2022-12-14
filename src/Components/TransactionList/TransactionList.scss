@@ -14,9 +14,6 @@
     @include tablet {
         padding:0 2rem;
     }
-    @include desktop {
-        padding: 2rem;
-    }
     &__items {
         width: 100%;
         height: 100%;
@@ -25,26 +22,70 @@
         flex-direction: column-reverse;
         justify-content: flex-start;
         align-items: flex-start;
-        scrollbar-width: none;
-        &::-webkit-scrollbar { 
-            display: none;  /* Safari and Chrome */
-        }
+        
         @include tablet {
             padding: 2rem;
         }
+    }
+    &__header {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgb(128, 128, 128, 0.5);
     }
     &__title {
         text-align: center;
         width: 100%;
         padding-bottom: 1rem;
+        order:1;
     }
     &__subtitle {
+        order: 3;
         text-align: center;
-        width: 100%;
-        padding-bottom: 1rem;
+        width: fit-content;
+        margin: 0 auto;
         color: rgb(128, 128, 128, 0.7);
-        border-bottom: 1px solid rgb(128, 128, 128, 0.5);
         text-transform: lowercase;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+    }
+    &__dropdown {
+        transition: 0.2s ease-in-out;
+        &--after {
+            transform: rotate(180deg);
+            transition: 0.2s ease-in-out;
+            transition-delay: 0.15s;
+        }
+    }
+    &__addbutton {
+        order: 2;
+        margin: 0 auto 0.5rem;
+        position: relative;
+        @include tablet {
+            position: absolute;
+            margin: unset;
+            right: 35px;
+            top: 25%;
+            cursor: pointer;
+        } 
+    }
+    &__calendar {
+        display: none;
+        &--after { 
+            display: inline-block;
+            color: $secondary-green;
+            position: absolute;
+            z-index: 10;
+            bottom: -265px;
+            left: 50%;
+            transform: translatex(-50%);
+        }
     }
 }
 .transaction-labels {
@@ -54,19 +95,61 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding: 2rem 2rem 0 4rem;
+        padding: 2rem 2rem 1rem 4rem;
+        &-sort {
+            scale: (0.7);
+            transform: rotate(90deg);
+            transition: 0.2s ease-in-out;
+            &--after {
+                scale: (0.7);
+                transform: rotate(270deg);
+                transition: 0.2s ease-in-out;
+            }
+        }
         &-name {
-            flex: 1.5;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            border:none;
+            background-color: white;
+            cursor: pointer;
+            &-wrapper {
+                flex: 1.5;
+            }
         }
         &-date {
-            flex:2;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            border:none;
+            background-color: white;
+            cursor: pointer;
+            &-wrapper {
+                flex:2;
+            }
         }
         &-amount {
-            flex:1;
             text-align: start;
             width: fit-content;
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            border:none;
+            background-color: white;
+            cursor: pointer;
+            &-wrapper {
+                flex:1;
+            }
         }
     }
    
+}
+.react-calendar__month-view__days__day {
+    color:$secondary-green; 
+}
+.react-calendar__tile--now, .react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus {
+    background-color: white;
+}
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus, .react-calendar__tile--active {
+    background-color:$alt-green2;
 }

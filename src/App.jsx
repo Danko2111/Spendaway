@@ -18,16 +18,12 @@ function App() {
       date1.getFullYear(),
       date1.getMonth(),
       date1.getDate()
-    )
-      .toISOString()
-      .substring(0, 10);
+    ).toLocaleDateString("en-ca");
     const endDate = new Date(
       date2.getFullYear(),
       date2.getMonth(),
       date2.getDate()
-    )
-      .toISOString()
-      .substring(0, 10);
+    ).toLocaleDateString("en-ca");
     setTransactionDates({ startDate: startDate, endDate: endDate });
   };
 
