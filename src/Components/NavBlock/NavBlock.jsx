@@ -8,7 +8,7 @@ import "./NavBlock.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const NavBlock = () => {
+const NavBlock = ({ updateLoggedInStatus }) => {
   const [navToggle, setNavToggle] = useState("");
 
   const navToggleHandler = () => {
@@ -24,6 +24,7 @@ const NavBlock = () => {
   const logoutClickHandler = (e) => {
     e.preventDefault();
     localStorage.clear();
+    updateLoggedInStatus();
     nav("/");
   };
 
@@ -51,7 +52,7 @@ const NavBlock = () => {
         </div>
         <button
           className="navblock__logout-button"
-          onClick={(e) => logoutClickHandler(e)}
+          onClick={logoutClickHandler}
         >
           <LogoutIcon />
           <p className="navblock__logout-button-text">Log out</p>

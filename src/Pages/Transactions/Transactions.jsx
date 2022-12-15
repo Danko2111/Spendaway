@@ -6,10 +6,11 @@ const Transactions = ({
   transactionData,
   transactionDates,
   updateTransactionDates,
+  updateLoggedInStatus,
 }) => {
   return (
     <div className="transactions-page">
-      <NavBlock />
+      <NavBlock updateLoggedInStatus={updateLoggedInStatus} />
       <div className="transactions-page__content">
         <div className="transactions-page__main">
           <TransactionList

@@ -30,6 +30,7 @@
     width: 100%;
     height: calc(100% - 92px);
     position: relative;
+    padding:3rem 2rem 1rem;
     @include tablet {
         height: 100%;
         position: fixed;
@@ -37,12 +38,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 400px;
-        height: 400px;
+        height: 420px;
         border-radius: 10px;
     }
     @include desktop {
-        width: 600px;
-        height: 600px;
+        width: 500px;
+        height: 500px;
         top:50%;
         position: absolute;
     }
@@ -54,6 +55,66 @@
         &:hover {
             transform: rotate(180deg);
             transition: 0.3s ease-in-out;
+        }
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        height: 100%;
+        @include desktop {
+            gap: 2rem;
+        }
+        &-title {
+            margin-bottom: 1rem;
+        }
+        &-input {
+            min-width: 175px;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            outline: none;
+            border: 1px solid $main-white;
+            border-radius: 20px;
+            color: $secondary-green;
+            @include desktop {
+                min-width: 250px;
+            }
+        }
+        &-select {
+            min-width: 175px;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            outline: none;
+            border: 1px solid $main-white;
+            border-radius: 20px;
+            color: $secondary-green;
+            @include desktop {
+                min-width: 250px;
+            }
+        }
+        &-label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        &-submit {
+            text-transform: uppercase;
+            padding: 0.8rem 2rem 0.8rem 2rem;
+            outline: none;
+            border: none;
+            background-color: $secondary-green;
+            color: white;
+            border-radius: 25px;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: auto;
+            cursor: pointer;
+            @include tablet {
+                margin-top: 0;
+            }
         }
     }
 }

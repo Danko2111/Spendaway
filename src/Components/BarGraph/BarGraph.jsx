@@ -45,7 +45,7 @@ const BarGraph = ({
       },
     },
   };
-  const labels = ["December"];
+  const labels = [""];
 
   const genGraphData = (data) => {
     const income = data

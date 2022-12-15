@@ -12,6 +12,9 @@ function App() {
 
   const [transactionData, setTransactionData] = useState(null);
   const [transactionDates, setTransactionDates] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    sessionStorage.getItem("authstatus")
+  );
 
   const updateTransactionDates = (date1, date2) => {
     const startDate = new Date(
@@ -27,6 +30,15 @@ function App() {
     setTransactionDates({ startDate: startDate, endDate: endDate });
   };
 
+  const updateLoggedInStatus = () => {
+    if (!isLoggedIn) {
+      sessionStorage.setItem("authstatus", "true");
+      setIsLoggedIn(true);
+    } else {
+      sessionStorage.setItem("authstatus", "false");
+      setIsLoggedIn(false);
+    }
+  };
   const getUserTransactions = () => {
     axios
       .get(
@@ -41,25 +53,31 @@ function App() {
         setTransactionData(res.data);
       });
   };
-  useEffect(() => {
-    let date1 = new Date();
-    let date2 = new Date();
-    updateTransactionDates(
-      new Date(date1.getFullYear(), date1.getMonth(), 1),
-      new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
-    );
-  }, []);
 
   useEffect(() => {
     if (transactionDates) getUserTransactions();
   }, [transactionDates]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      let date1 = new Date();
+      let date2 = new Date();
+      updateTransactionDates(
+        new Date(date1.getFullYear(), date1.getMonth(), 1),
+        new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
+      );
+    }
+  }, [isLoggedIn]);
 
   return (
     <div className="App">
       <BrowserRouter>
         <div className="app-body">
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route
+              path="/"
+              element={<Home updateLoggedInStatus={updateLoggedInStatus} />}
+            ></Route>
             {transactionData ? (
               <>
                 <Route
@@ -69,6 +87,7 @@ function App() {
                       transactionData={transactionData}
                       transactionDates={transactionDates}
                       updateTransactionDates={updateTransactionDates}
+                      updateLoggedInStatus={updateLoggedInStatus}
                     />
                   }
                 ></Route>
@@ -79,6 +98,7 @@ function App() {
                       transactionData={transactionData}
                       transactionDates={transactionDates}
                       updateTransactionDates={updateTransactionDates}
+                      updateLoggedInStatus={updateLoggedInStatus}
                     />
                   }
                 ></Route>
@@ -89,6 +109,7 @@ function App() {
                       transactionData={transactionData}
                       transactionDates={transactionDates}
                       updateTransactionDates={updateTransactionDates}
+                      updateLoggedInStatus={updateLoggedInStatus}
                     />
                   }
                 ></Route>

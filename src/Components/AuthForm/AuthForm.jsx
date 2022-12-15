@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import md5 from "md5";
 import axios from "axios";
 
-const AuthForm = ({ bgState }) => {
+const AuthForm = ({ bgState, updateLoggedInStatus }) => {
   const [activeForm, setActiveForm] = useState(true);
 
   const handleLoginFormSwitch = () => {
@@ -59,6 +59,7 @@ const AuthForm = ({ bgState }) => {
               setUserErrClass("");
               setPassErrClass("");
               localStorage.setItem("token", res.data.token);
+              updateLoggedInStatus();
               nav("/dashboard");
             }
           })

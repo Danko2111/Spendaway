@@ -4,7 +4,7 @@ import Logo from "../../assets/images/Logo.svg";
 import smallLogo from "../../assets/images/smallLogo.svg";
 import AuthForm from "../../Components/AuthForm/AuthForm";
 
-const Home = () => {
+const Home = ({ updateLoggedInStatus }) => {
   const [bgState, setBgState] = useState("");
 
   const handleContinueClick = () => {
@@ -34,7 +34,7 @@ const Home = () => {
         alt="site logo"
         src={smallLogo}
       ></img>
-      <AuthForm bgState={bgState} />
+      <AuthForm bgState={bgState} updateLoggedInStatus={updateLoggedInStatus} />
     </div>
   );
 };

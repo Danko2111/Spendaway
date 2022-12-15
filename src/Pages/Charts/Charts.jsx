@@ -10,6 +10,7 @@ const Charts = ({
   transactionData,
   transactionDates,
   updateTransactionDates,
+  updateLoggedInStatus,
 }) => {
   const [selectedGraph, setSelectedGraph] = useState("pie");
 
@@ -19,7 +20,7 @@ const Charts = ({
 
   return (
     <div className="charts">
-      <NavBlock />
+      <NavBlock updateLoggedInStatus={updateLoggedInStatus} />
       <div className="charts__content">
         {selectedGraph === "pie" && (
           <>

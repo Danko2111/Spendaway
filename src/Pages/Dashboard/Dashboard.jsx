@@ -10,6 +10,7 @@ const Dashboard = ({
   transactionData,
   transactionDates,
   updateTransactionDates,
+  updateLoggedInStatus,
 }) => {
   const api_url = "http://localhost:5050";
   const currTime = GetTime();
@@ -32,7 +33,7 @@ const Dashboard = ({
   }, []);
   return userInfo ? (
     <div className="dashboard">
-      <NavBlock />
+      <NavBlock updateLoggedInStatus={updateLoggedInStatus} />
       <div className="dashboard__content">
         <div className="dashboard__main">
           <div className="dashboard__hero">
