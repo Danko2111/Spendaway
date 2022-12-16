@@ -116,8 +116,16 @@
     user-select: none;
     text-transform: uppercase;
     font-size: 0.7rem;
-    &:hover &-text {
+    &:hover &-text  {
             border-bottom: 1px solid $main-white;
+    }
+    &--active {
+        @extend .navblock__link;
+    }
+    &--active &-text  {
+        @extend .navblock__link;
+        border-bottom: 1px solid $main-white;
+        font-weight: 600;
     }
     @include tablet {
         font-size: 0.9rem;

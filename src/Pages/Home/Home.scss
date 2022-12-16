@@ -98,7 +98,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #617e7b;
+            background-color: #e6f8f7;
             border-radius: 50%;
             width: 60%;
             height: 60%;
@@ -111,7 +111,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                background-color: #617e7b;
+                background-color: #e6f8f7;
                 border-radius: 50%;
                 width: 60%;
                 height: 60%;
@@ -132,6 +132,7 @@
         } 
         &-title {
             padding: 1rem 0;
+            color: $secondary-green;
         }
         &-title--main{
             flex:1;

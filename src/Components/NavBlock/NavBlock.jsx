@@ -6,7 +6,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import Logo from "../../assets/images/Logo.svg";
 import "./NavBlock.scss";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const NavBlock = ({ updateLoggedInStatus }) => {
   const [navToggle, setNavToggle] = useState("");
@@ -19,6 +19,7 @@ const NavBlock = ({ updateLoggedInStatus }) => {
     }
   };
 
+  const location = useLocation();
   const nav = useNavigate();
 
   const logoutClickHandler = (e) => {
@@ -34,19 +35,47 @@ const NavBlock = ({ updateLoggedInStatus }) => {
         <img className="navblock-logo" alt="logo" src={Logo}></img>
       </div>
       <div className={`navblock__links-wrapper${navToggle}`}>
-        <div className="navblock__link" onClick={() => nav("/dashboard")}>
+        <div
+          className={
+            location.pathname === "/dashboard"
+              ? "navblock__link--active"
+              : "navblock__link"
+          }
+          onClick={() => nav("/dashboard")}
+        >
           <HomeIcon />
           <p className="navblock__link-text">Dashboard</p>
         </div>
-        <div className="navblock__link" onClick={() => nav("/charts")}>
+        <div
+          className={
+            location.pathname === "/charts"
+              ? "navblock__link--active"
+              : "navblock__link"
+          }
+          onClick={() => nav("/charts")}
+        >
           <BarChartIcon />
           <p className="navblock__link-text">Analytics</p>
         </div>
-        <div className="navblock__link" onClick={() => nav("/transactions")}>
+        <div
+          className={
+            location.pathname === "/transactions"
+              ? "navblock__link--active"
+              : "navblock__link"
+          }
+          onClick={() => nav("/transactions")}
+        >
           <ReceiptIcon />
           <p className="navblock__link-text">Transactions</p>
         </div>
-        <div className="navblock__link" onClick={() => nav("/settings")}>
+        <div
+          className={
+            location.pathname === "/settings"
+              ? "navblock__link--active"
+              : "navblock__link"
+          }
+          onClick={() => nav("/settings")}
+        >
           <SettingsIcon />
           <p className="navblock__link-text">Settings</p>
         </div>

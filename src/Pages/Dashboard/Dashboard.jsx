@@ -19,17 +19,19 @@ const Dashboard = ({
       <div className="dashboard__content">
         <div className="dashboard__main">
           <div className="dashboard__hero">
-            <h2 className="dashboard__hero-title">
-              Good {currTime} {userInfo.username}
-            </h2>
-            <p className="dashboard__hero-balance">
-              Your current balance: ${userInfo.balance}
-            </p>
+            <div className="dashboard__hero-text-wrapper">
+              <h2 className="dashboard__hero-title">
+                Good {currTime} {userInfo.username}
+              </h2>
+              <p className="dashboard__hero-text">Your current balance:</p>
+            </div>
+            <p className="dashboard__hero-balance">${userInfo.balance}</p>
           </div>
           <BarGraph
             transactionData={transactionData}
             transactionDates={transactionDates}
             updateTransactionDates={updateTransactionDates}
+            onDashboard={true}
           />
         </div>
         <DashboardAside transactionData={transactionData} />

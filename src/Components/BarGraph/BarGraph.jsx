@@ -9,12 +9,16 @@ import {
 } from "chart.js";
 import { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
+import GraphLinks from "../GraphLinks/GraphLinks";
 import "./BarGraph.scss";
 
 const BarGraph = ({
   transactionData,
   transactionDates,
+  selectedGraph,
+  updateSelectedGraph,
   updateTransactionDates,
+  onDashboard,
 }) => {
   useEffect(() => {
     let date1 = new Date();
@@ -83,6 +87,12 @@ const BarGraph = ({
   return (
     <div className="charts__main">
       <div className="bar-charts__graph-wrapper">
+        {!onDashboard ? (
+          <GraphLinks
+            updateSelectedGraph={updateSelectedGraph}
+            selectedGraph={selectedGraph}
+          />
+        ) : null}
         <h3 className="bar-charts__graph-title">Income vs Spending</h3>
         <p className="bar-charts__graph-date">
           {transactionDates.startDate} to {transactionDates.endDate}

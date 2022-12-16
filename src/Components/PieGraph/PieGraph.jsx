@@ -3,10 +3,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { useEffect } from "react";
 import "./PieGraph.scss";
+import GraphLinks from "../GraphLinks/GraphLinks";
 
 const PieGraph = ({
   transactionData,
   transactionDates,
+  updateSelectedGraph,
+  selectedGraph,
   updateTransactionDates,
 }) => {
   let colors = [
@@ -68,6 +71,10 @@ const PieGraph = ({
   return (
     <div className="charts__main">
       <div className="pie-charts__graph">
+        <GraphLinks
+          updateSelectedGraph={updateSelectedGraph}
+          selectedGraph={selectedGraph}
+        />
         <div className="pie-charts__graph-heading">
           <h3 className="pie-charts__graph-title">Category Spending</h3>
           <p className="pie-charts__graph-date">

@@ -11,10 +11,13 @@ import {
 } from "chart.js";
 import { useEffect } from "react";
 import HashTransactions from "../../Utils/HashTransactions/HashTransactions";
+import GraphLinks from "../GraphLinks/GraphLinks";
 
 const LineGraph = ({
   transactionData,
   transactionDates,
+  selectedGraph,
+  updateSelectedGraph,
   updateTransactionDates,
 }) => {
   ChartJS.register(
@@ -61,6 +64,10 @@ const LineGraph = ({
   return (
     <div className="charts__main">
       <div className="line-charts__graph">
+        <GraphLinks
+          updateSelectedGraph={updateSelectedGraph}
+          selectedGraph={selectedGraph}
+        />
         <div className="line-charts__graph-heading">
           <h3 className="line-charts__graph-title">
             Spending/Income over time

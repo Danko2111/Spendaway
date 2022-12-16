@@ -50,12 +50,13 @@
             width: 70%;
             max-width: 600px;
             height: fit-content;
-            padding: 4rem 2rem;
+            padding: 4rem 0rem;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
             @include desktop {
+                padding: 4rem 2rem;
                 height: 80%;
                 width: 90%;
                 min-height: 500px;

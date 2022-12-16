@@ -27,6 +27,8 @@ const Charts = ({
             <PieGraph
               transactionData={transactionData}
               transactionDates={transactionDates}
+              selectedGraph={selectedGraph}
+              updateSelectedGraph={updateSelectedGraph}
               updateTransactionDates={updateTransactionDates}
             />
           </>
@@ -36,7 +38,10 @@ const Charts = ({
             <BarGraph
               transactionData={transactionData}
               transactionDates={transactionDates}
+              selectedGraph={selectedGraph}
+              updateSelectedGraph={updateSelectedGraph}
               updateTransactionDates={updateTransactionDates}
+              onDashboard={false}
             />
           </>
         )}
@@ -45,15 +50,14 @@ const Charts = ({
             <LineGraph
               transactionData={transactionData}
               transactionDates={transactionDates}
+              selectedGraph={selectedGraph}
+              updateSelectedGraph={updateSelectedGraph}
               updateTransactionDates={updateTransactionDates}
             />
           </>
         )}
       </div>
-      <ChartControls
-        updateSelectedGraph={updateSelectedGraph}
-        updateTransactionDates={updateTransactionDates}
-      />
+      <ChartControls updateTransactionDates={updateTransactionDates} />
     </div>
   );
 };
