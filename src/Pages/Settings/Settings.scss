@@ -54,20 +54,49 @@
             margin-bottom: 3rem;
             border-bottom: 1px solid rgb(128, 128, 128, 0.5);
         }
-        &-apply {
-            margin: auto 1rem 1rem auto;
-            &-button {
-                padding: 0.6rem 1.6rem;
-                background-color: $secondary-green;
-                border: none;
-                text-transform: uppercase;
-                border-radius: 25px;
-                color: white;
-                font-size: 1.1rem;
-                &:active {
-                    transform: scale(0.98);
-                }
+        &-buttons {
+           display: flex;
+           flex-direction: column;
+           gap: 2rem;
+           justify-content: space-between;
+           width: 100%;
+           padding-top: 3rem;
+           @include navBreak {
+            flex-direction: row;
+           }
+            @include desktop {
+                gap: 0;
+                padding-top: 0;
+                margin-top: auto;
             }
+         
+        }
+        &-apply-button {
+            padding: 0.6rem 1.6rem;
+            background-color: $secondary-green;
+            border: none;
+            text-transform: uppercase;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            &:active {
+                transform: scale(0.98);
+            }
+        
+        }
+        &-reset-button {
+            padding: 0.6rem 1.6rem;
+            background-color: white;
+            border: 2px solid $secondary-green;
+            text-transform: uppercase;
+            border-radius: 25px;
+            color: $secondary-green;
+            font-size: 1.1rem;
+            cursor: pointer;
+            &:active {
+                transform: scale(0.98);
+            } 
         }
     }
     &__user-details {
@@ -81,6 +110,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
+        gap: 2rem;
         &-title {
             width: 100%;
             text-align: center;

@@ -12,7 +12,6 @@ const Dashboard = ({
   userInfo,
 }) => {
   const currTime = GetTime();
-
   return userInfo ? (
     <div className="dashboard">
       <NavBlock updateLoggedInStatus={updateLoggedInStatus} />

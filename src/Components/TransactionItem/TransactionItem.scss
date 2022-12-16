@@ -51,15 +51,31 @@
             text-align: start;
         }
     }
-    &__amount {
-        width: 100%;
+    &__amount-wrapper {
+        flex:1;
+    }
+    &__amount-pos {
+        width: fit-content;
         text-align: end;
         white-space: nowrap;
+        padding: 0.4rem 0.8rem;
+        border-radius: 25px;
+        background-color: rgb(108, 175, 108, 0.3);
+        color: rgba(23, 111, 23, 0.7);
         @include tablet {
-            flex:1;
-            width: fit-content;
             text-align: start;
-            width: unset;
+        }
+    }
+    &__amount-neg {
+        width: fit-content;
+        text-align: end;
+        white-space: nowrap;
+        padding: 0.4rem 0.8rem;
+        border-radius: 25px;
+        background-color: rgb(237, 142, 142,0.3);
+        color: rgba(144, 30, 30, 0.7);
+        @include tablet {
+            text-align: start;
         }
     }
 

@@ -93,10 +93,12 @@ const BarGraph = ({
             selectedGraph={selectedGraph}
           />
         ) : null}
-        <h3 className="bar-charts__graph-title">Income vs Spending</h3>
-        <p className="bar-charts__graph-date">
-          {transactionDates.startDate} to {transactionDates.endDate}
-        </p>
+        <div className="bar-charts__graph-header">
+          <h3 className="bar-charts__graph-title">Income vs Spending</h3>
+          <p className="bar-charts__graph-date">
+            {transactionDates.startDate} to {transactionDates.endDate}
+          </p>
+        </div>
         <div className="bar-charts__graph-data">
           <Bar options={options} data={genGraphData(transactionData)} />
         </div>

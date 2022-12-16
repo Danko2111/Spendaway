@@ -4,9 +4,12 @@ const TransactionItem = ({ transactionData }) => {
   const { name, category, amount, date } = transactionData;
   const parsedDate = new Date(date);
   let posNeg;
+  let typeClass;
   if (category === "Income") {
     posNeg = "+ ";
+    typeClass = "-pos";
   } else {
+    typeClass = "-neg";
     posNeg = "- ";
   }
   return (
@@ -16,9 +19,11 @@ const TransactionItem = ({ transactionData }) => {
         <p className="transaction-item__category">{category}</p>
       </div>
       <p className="transaction-item__date">{parsedDate.toDateString()}</p>
-      <p className="transaction-item__amount">
-        {posNeg}${parseFloat(amount).toFixed(2)}
-      </p>
+      <div className="transaction-item__amount-wrapper">
+        <p className={`transaction-item__amount${typeClass}`}>
+          {posNeg}${parseFloat(amount).toFixed(2)}
+        </p>
+      </div>
     </li>
   );
 };

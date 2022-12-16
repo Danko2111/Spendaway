@@ -2,8 +2,9 @@ import NavBlock from "../../Components/NavBlock/NavBlock";
 import "./Settings.scss";
 import CategoryColorPicker from "../../Components/CategoryColorPicker/CategoryColorPicker";
 import { useState } from "react";
+import UserInfoForm from "../../Components/UserInfoForm/UserInfoForm";
 
-const Settings = () => {
+const Settings = ({ updateLoggedInStatus, userInfo }) => {
   let colorProfileArr = "";
   if (localStorage.getItem("colorProfile")) {
     colorProfileArr = JSON.parse(localStorage.getItem("colorProfile"));
@@ -46,12 +47,21 @@ const Settings = () => {
     );
   };
 
+  const resetButtonHandler = () => {
+    localStorage.removeItem("colorProfile");
+    window.location.reload();
+  };
+
   return (
     <div className="settings">
       <NavBlock />
       <div className="settings__content">
         <div className="settings__user-details">
           <h3 className="settings__user-details-title">User Settings</h3>
+          <UserInfoForm
+            updateLoggedInStatus={updateLoggedInStatus}
+            userInfo={userInfo}
+          />
         </div>
         <div className="settings__colorpicker">
           <h3 className="settings__colorpicker-title">Visual Settings</h3>
@@ -108,7 +118,13 @@ const Settings = () => {
               setFoodColor(`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`)
             }
           />
-          <div className="settings__colorpicker-apply">
+          <div className="settings__colorpicker-buttons">
+            <button
+              className="settings__colorpicker-reset-button"
+              onClick={resetButtonHandler}
+            >
+              Reset
+            </button>
             <button
               className="settings__colorpicker-apply-button"
               onClick={applyButtonHandler}

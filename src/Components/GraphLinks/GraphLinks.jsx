@@ -37,7 +37,7 @@ const GraphLinks = ({ updateSelectedGraph, selectedGraph }) => {
         onClick={() => updateSelectedGraph("line")}
       >
         <TimelineIcon className="graph-links__chart-icon" />
-        Spending/Income Over Time
+        Transactions Over Time
       </button>
     </div>
   );

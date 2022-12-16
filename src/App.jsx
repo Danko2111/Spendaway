@@ -26,7 +26,7 @@ function App() {
         },
       })
       .then((res) => {
-        setUserInfo(res.data[0]);
+        setUserInfo(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -135,7 +135,15 @@ function App() {
                     />
                   }
                 ></Route>
-                <Route path="/settings" element={<Settings />}></Route>
+                <Route
+                  path="/settings"
+                  element={
+                    <Settings
+                      updateLoggedInStatus={updateLoggedInStatus}
+                      userInfo={userInfo}
+                    />
+                  }
+                ></Route>
               </>
             ) : null}
           </Routes>
