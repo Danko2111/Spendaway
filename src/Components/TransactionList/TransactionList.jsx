@@ -12,6 +12,7 @@ const TransactionList = ({
   transactionData,
   transactionDates,
   updateTransactionDates,
+  userInfo,
 }) => {
   const [dateRange, setDateRange] = useState(null);
   const [catSort, setCatSort] = useState("");
@@ -70,10 +71,10 @@ const TransactionList = ({
         if (!dateSort) {
           setDateSort("--after");
           const newData = [...transactionData].sort((a, b) => {
-            if (a.date < b.date) {
+            if (a.date > b.date) {
               return 1;
             }
-            if (a.date > b.date) {
+            if (a.date < b.date) {
               return -1;
             }
             return 0;
@@ -82,10 +83,10 @@ const TransactionList = ({
         } else {
           setDateSort("");
           const newData = [...transactionData].sort((a, b) => {
-            if (a.date > b.date) {
+            if (a.date < b.date) {
               return 1;
             }
-            if (a.date < b.date) {
+            if (a.date > b.date) {
               return -1;
             }
             return 0;
@@ -139,6 +140,7 @@ const TransactionList = ({
       <AddTransactionModal
         modalVis={modalVis}
         handleModalVis={handleModalVis}
+        userInfo={userInfo}
       />
       <div className="transaction-list__header">
         <h3 className="transaction-list__title">transactions</h3>

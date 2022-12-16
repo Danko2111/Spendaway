@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import DashboardAside from "../../Components/DashboardAside/DashboardAside";
 import BarGraph from "../../Components/BarGraph/BarGraph";
 import NavBlock from "../../Components/NavBlock/NavBlock";
@@ -11,26 +9,10 @@ const Dashboard = ({
   transactionDates,
   updateTransactionDates,
   updateLoggedInStatus,
+  userInfo,
 }) => {
-  const api_url = "http://localhost:5050";
   const currTime = GetTime();
-  const [userInfo, setUserInfo] = useState(null);
 
-  const getUserInfo = () => {
-    axios
-      .get(`${api_url}/users`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        setUserInfo(res.data[0]);
-      });
-  };
-
-  useEffect(() => {
-    getUserInfo();
-  }, []);
   return userInfo ? (
     <div className="dashboard">
       <NavBlock updateLoggedInStatus={updateLoggedInStatus} />

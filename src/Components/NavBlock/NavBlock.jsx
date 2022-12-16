@@ -40,7 +40,7 @@ const NavBlock = ({ updateLoggedInStatus }) => {
         </div>
         <div className="navblock__link" onClick={() => nav("/charts")}>
           <BarChartIcon />
-          <p className="navblock__link-text">Charts</p>
+          <p className="navblock__link-text">Analytics</p>
         </div>
         <div className="navblock__link" onClick={() => nav("/transactions")}>
           <ReceiptIcon />

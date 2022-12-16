@@ -1,0 +1,33 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.category {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 25%;
+    &__title {
+        margin-right: 2rem;
+    }
+    &__color {
+        width: 60px;
+        height: 30px;
+        position: relative;
+    }
+    &__color-picker {
+        display: none;
+        &--show {
+            display: inline-block;
+            position: absolute;
+            top: 30px;
+            left: 18%;
+        }
+        
+    }
+    .github-picker {
+        flex-direction: column;
+        width: fit-content !important;
+        z-index: 25;
+    }
+}

@@ -7,6 +7,7 @@ const Transactions = ({
   transactionDates,
   updateTransactionDates,
   updateLoggedInStatus,
+  userInfo,
 }) => {
   return (
     <div className="transactions-page">
@@ -17,6 +18,7 @@ const Transactions = ({
             transactionData={transactionData}
             transactionDates={transactionDates}
             updateTransactionDates={updateTransactionDates}
+            userInfo={userInfo}
           />
         </div>
       </div>

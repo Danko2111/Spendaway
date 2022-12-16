@@ -6,6 +6,7 @@ import Charts from "./Pages/Charts/Charts";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Home from "./Pages/Home/Home";
 import Transactions from "./Pages/Transactions/Transactions";
+import Settings from "./Pages/Settings/Settings";
 
 function App() {
   const api_url = "http://localhost:5050";
@@ -13,9 +14,24 @@ function App() {
   const [transactionData, setTransactionData] = useState(null);
   const [transactionDates, setTransactionDates] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(
-    sessionStorage.getItem("authstatus")
+    JSON.parse(sessionStorage.getItem("authstatus"))
   );
+  const [userInfo, setUserInfo] = useState(null);
 
+  const getUserInfo = () => {
+    axios
+      .get(`${api_url}/users`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        setUserInfo(res.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const updateTransactionDates = (date1, date2) => {
     const startDate = new Date(
       date1.getFullYear(),
@@ -32,10 +48,10 @@ function App() {
 
   const updateLoggedInStatus = () => {
     if (!isLoggedIn) {
-      sessionStorage.setItem("authstatus", "true");
+      sessionStorage.setItem("authstatus", true);
       setIsLoggedIn(true);
     } else {
-      sessionStorage.setItem("authstatus", "false");
+      sessionStorage.setItem("authstatus", false);
       setIsLoggedIn(false);
     }
   };
@@ -55,7 +71,11 @@ function App() {
   };
 
   useEffect(() => {
-    if (transactionDates) getUserTransactions();
+    // console.log("transactionDates", transactionDates);
+    if (transactionDates) {
+      getUserTransactions();
+      getUserInfo();
+    }
   }, [transactionDates]);
 
   useEffect(() => {
@@ -78,7 +98,7 @@ function App() {
               path="/"
               element={<Home updateLoggedInStatus={updateLoggedInStatus} />}
             ></Route>
-            {transactionData ? (
+            {transactionData && userInfo ? (
               <>
                 <Route
                   path="/dashboard"
@@ -88,6 +108,7 @@ function App() {
                       transactionDates={transactionDates}
                       updateTransactionDates={updateTransactionDates}
                       updateLoggedInStatus={updateLoggedInStatus}
+                      userInfo={userInfo}
                     />
                   }
                 ></Route>
@@ -110,9 +131,11 @@ function App() {
                       transactionDates={transactionDates}
                       updateTransactionDates={updateTransactionDates}
                       updateLoggedInStatus={updateLoggedInStatus}
+                      userInfo={userInfo}
                     />
                   }
                 ></Route>
+                <Route path="/settings" element={<Settings />}></Route>
               </>
             ) : null}
           </Routes>

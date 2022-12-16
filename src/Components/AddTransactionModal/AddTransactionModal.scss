@@ -37,13 +37,11 @@
         top:60%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 400px;
-        height: 420px;
+        width: 500px;
+        height: 500px;
         border-radius: 10px;
     }
     @include desktop {
-        width: 500px;
-        height: 500px;
         top:50%;
         position: absolute;
     }
@@ -62,16 +60,18 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
         height: 100%;
         @include desktop {
             gap: 2rem;
         }
         &-title {
-            margin-bottom: 1rem;
+            padding:0 5rem 1rem;
+            border-bottom: 1px solid rgb(128, 128, 128, 0.5);
         }
         &-input {
-            min-width: 175px;
+            width: 100%;
+            min-width: 190px;
             padding: 0.5rem 1rem 0.5rem 1rem;
             outline: none;
             border: 1px solid $main-white;
@@ -82,7 +82,8 @@
             }
         }
         &-select {
-            min-width: 175px;
+            width: 100%;
+            min-width: 190px;
             padding: 0.5rem 1rem 0.5rem 1rem;
             outline: none;
             border: 1px solid $main-white;
@@ -97,6 +98,8 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 0.5rem;
+            font-size: 0.8rem;
+            width: 100%;
         }
         &-submit {
             text-transform: uppercase;

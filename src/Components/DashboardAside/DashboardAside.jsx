@@ -12,16 +12,14 @@ const DashboardAside = ({ transactionData }) => {
         <p className="transaction-labels-amount">Amount:</p>
       </div>
       <ul className="dashboard__aside-transactions">
-        {transactionData
-          .slice(transactionData.length - 10, transactionData.length)
-          .map((transaction) => {
-            return (
-              <TransactionItem
-                key={transaction.transaction_id}
-                transactionData={transaction}
-              />
-            );
-          })}
+        {transactionData.slice(0, 10).map((transaction) => {
+          return (
+            <TransactionItem
+              key={transaction.transaction_id}
+              transactionData={transaction}
+            />
+          );
+        })}
       </ul>
     </div>
   );

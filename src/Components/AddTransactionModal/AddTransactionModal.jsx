@@ -5,7 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { v4 as uuidv4 } from "uuid";
 import "./AddTransactionModal.scss";
 
-const AddTransactionModal = ({ modalVis, handleModalVis }) => {
+const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
   const api_url = "http://localhost:5050";
 
   const [category, setCategory] = useState("");
@@ -15,13 +15,13 @@ const AddTransactionModal = ({ modalVis, handleModalVis }) => {
   const handleChange = (e) => {
     setCategory(e.target.value);
   };
-
   const nameUpdate = (e) => {
     setName(e.target.value);
   };
   const amountUpdate = (e) => {
     setAmount(e.target.value);
   };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const currDate = new Date();
@@ -32,6 +32,23 @@ const AddTransactionModal = ({ modalVis, handleModalVis }) => {
       amount: parseFloat(amount),
       date: currDate.toLocaleDateString("en-ca"),
     };
+
+    const updateBalance = () => {
+      if (category !== "Income") {
+        {
+          return {
+            balance: (userInfo.balance - parseFloat(amount)).toFixed(2),
+          };
+        }
+      } else {
+        {
+          return {
+            balance: (userInfo.balance + parseFloat(amount)).toFixed(2),
+          };
+        }
+      }
+    };
+
     axios
       .post(`${api_url}/transactions`, newTransaction, {
         headers: {
@@ -39,8 +56,20 @@ const AddTransactionModal = ({ modalVis, handleModalVis }) => {
         },
       })
       .then((res) => {
-        handleModalVis();
-        window.location.reload();
+        axios
+          .put(`${api_url}/users`, updateBalance(), {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .then((res) => {
+            console.log("test");
+            handleModalVis();
+            window.location.reload();
+          })
+          .catch((err) => {
+            console.log("test", err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -58,7 +87,7 @@ const AddTransactionModal = ({ modalVis, handleModalVis }) => {
             <input
               type="text"
               className="modal__form-input"
-              placeholder="Name..."
+              placeholder="What did you purchase?"
               name="name"
               value={name}
               onChange={nameUpdate}
@@ -89,7 +118,7 @@ const AddTransactionModal = ({ modalVis, handleModalVis }) => {
             <input
               type="number"
               className="modal__form-input"
-              placeholder="146.99..."
+              placeholder="How much was it?"
               name="amount"
               value={amount}
               onChange={amountUpdate}

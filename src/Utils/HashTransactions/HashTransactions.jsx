@@ -32,7 +32,7 @@ const HashTransactions = (data, category) => {
     transactionArr.push(hash[key]);
     labels.push(key);
   }
-  return [labels, transactionArr];
+  return [labels.reverse(), transactionArr.reverse()];
 };
 
 export default HashTransactions;

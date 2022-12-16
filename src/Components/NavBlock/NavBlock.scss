@@ -30,7 +30,7 @@
     }
     @include desktop {
         justify-content: flex-start;
-        padding:1rem 2rem;
+        padding:2rem 2rem;
     }
 }
 .navblock-logo {
@@ -38,7 +38,7 @@
     height: 60px;
     border-radius: 10px;
     padding: 0.5rem;
-    background-color: #617e7b;
+    background-color: #e6f8f7;
     @include tablet {
         width: 100px;
         height: 100px;

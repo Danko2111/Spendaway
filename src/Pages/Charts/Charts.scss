@@ -23,7 +23,10 @@
         align-items: flex-start;
         flex-wrap: nowrap;
         color: $secondary-green;
-        margin-top: 132px;
+        margin-top: 92px;
+        @include tablet {
+            margin-top: 132px;
+        }
         @include desktop {
             margin-top: 0px;
             flex-direction: row;
