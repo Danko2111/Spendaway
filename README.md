@@ -54,7 +54,9 @@ for the front end and the app should be available on your browser.
 
 #### Back-End
 
--   Node.js - handled the runtime environment for all API calls comming in from the front end. 
+-   Node.js - handled the runtime environment for Express.
+
+-   Express.js - was used to handle all API calls comming in from the front end. Creating routes and controllers to help with separation of concerns. 
 
 -   JWT - was implemented for user authorization.
 
