@@ -1,70 +1,69 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Spendaway - A Full-Stack Budgeting App
 
-## Available Scripts
+This is a full-stack budgeting application built with React and Node. Spendaway helps people with breaking down their 
+spending and income. Both visual and numeric breakdown to provide as much information as possible to the user. 
+This app is aimed towards the everyday spender. Sometimes just staring at numbers on your banking app makes it 
+difficlt to asses how well you are saving and spending money. Spendaway is here to help!
 
-In the project directory, you can run:
+# Related
 
-### `npm start`
+Here is the back end API for this project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Spendaway - Node.js Back End](https://github.com/Danko2111/Spendaway-Server)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Environment Variables
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run this project, you will need to add the following environment variables to your .env file
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### API 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`REACT_APP_BASE_URL = {YOUR DEPLOYMENT HERE}`
 
-### `npm run eject`
+## Run Locally
+1. Once you have cloned this repository make sure to run `npm i` to install any dependancies you might be missing.
+2. Make sure you download [Spendaway Back-End](https://github.com/Danko2111/Spendaway-server) and follow the installation steps in that repository.
+3. Once all the steps above as well as on the back-end have been completed, now run 
+```bash
+npm run dev
+```
+for the back-end, and
+```bash
+npm start
+```
+for the front end and the app should be available on your browser.
+## App Demo
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Tech Stack
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Front-End
 
-## Learn More
+-   React - was used as the front end framework. This would create a perfect base for this app  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-   React Charts - was used to create the beautiful yet dynamic charts used throughout the project.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   Axios - was used for making async API calls to the custom Node.js Backend. 
 
-### Code Splitting
+-   Sass - was used to handle all front-end styling.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Back-End
 
-### Analyzing the Bundle Size
+-   Node.js - handled the runtime environment for all API calls comming in from the front end. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-   JWT - was implemented for user authorization.
 
-### Making a Progressive Web App
+-   Bcrypt - was used to encrypt and decrypt user passwords to strengthen user-info security.  All user data was stored in the DB 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-   Knex - was used to query the MySQL DB from the backend. Allowing for custom API calls to be handled with ease.
 
-### Advanced Configuration
+#### Database
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+-   MySQL - was the optimal choice, as the potentially vast amounts of transactional information would need to be handled in a robust and efficient manner.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
