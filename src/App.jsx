@@ -9,7 +9,7 @@ import Transactions from "./Pages/Transactions/Transactions";
 import Settings from "./Pages/Settings/Settings";
 
 function App() {
-  const api_url = "http://localhost:5050";
+  const api_url = process.env.REACT_APP_BASE_URL;
 
   const [transactionData, setTransactionData] = useState(null);
   const [transactionDates, setTransactionDates] = useState(null);

@@ -54,7 +54,7 @@ const Settings = ({ updateLoggedInStatus, userInfo }) => {
 
   return (
     <div className="settings">
-      <NavBlock />
+      <NavBlock updateLoggedInStatus={updateLoggedInStatus} />
       <div className="settings__content">
         <div className="settings__user-details">
           <h3 className="settings__user-details-title">User Settings</h3>

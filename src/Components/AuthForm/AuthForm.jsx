@@ -8,6 +8,7 @@ import md5 from "md5";
 import axios from "axios";
 
 const AuthForm = ({ bgState, updateLoggedInStatus }) => {
+  const api_url = process.env.REACT_APP_BASE_URL;
   const [activeForm, setActiveForm] = useState(true);
 
   const handleLoginFormSwitch = () => {
@@ -44,7 +45,7 @@ const AuthForm = ({ bgState, updateLoggedInStatus }) => {
       };
       if (activeForm) {
         axios
-          .post(`http://localhost:5050/login`, userObj)
+          .post(`${api_url}/login`, userObj)
           .then((res) => {
             setErrClass("");
             setUserErrClass("");
@@ -68,7 +69,7 @@ const AuthForm = ({ bgState, updateLoggedInStatus }) => {
           });
       } else if (!activeForm) {
         axios
-          .post(`http://localhost:5050/signup`, userObj)
+          .post(`${api_url}/signup`, userObj)
           .then((res) => {
             setErrClass("");
             setUserErrClass("");

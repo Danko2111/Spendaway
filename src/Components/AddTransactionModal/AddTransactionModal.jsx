@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import "./AddTransactionModal.scss";
 
 const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
-  const api_url = "http://localhost:5050";
+  const api_url = process.env.REACT_APP_BASE_URL;
 
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");

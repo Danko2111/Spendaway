@@ -8,6 +8,7 @@ import axios from "axios";
 import "./UserInfoForm.scss";
 
 const UserInfoForm = ({ updateLoggedInStatus, userInfo }) => {
+  const api_url = process.env.REACT_APP_BASE_URL;
   const [errClass, setErrClass] = useState("");
   const [newUserErrClass, setNewUserErrClass] = useState("");
 
@@ -33,7 +34,7 @@ const UserInfoForm = ({ updateLoggedInStatus, userInfo }) => {
       setErrClass("--error");
     } else {
       axios
-        .put(`http://localhost:5050/users/update-user`, userObj, {
+        .put(`${api_url}/users/update-user`, userObj, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
