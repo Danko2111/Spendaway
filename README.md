@@ -37,7 +37,11 @@ npm start
 for the front end and the app should be available on your browser.
 ## App Demo
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Spendaway Gif 1](https://github.com/Danko2111/Spendaway/blob/main/src/Data/Gifs/ezgif.com-gif-maker.gif)
+
+![Spendaway Gif 2](https://github.com/Danko2111/Spendaway/blob/main/src/Data/Gifs/ezgif.com-gif-maker%20(1).gif)
+
+![Spendaway Gif 3](https://github.com/Danko2111/Spendaway/blob/main/src/Data/Gifs/ezgif.com-gif-maker%20(2).gif)
 
 
 ## Tech Stack
