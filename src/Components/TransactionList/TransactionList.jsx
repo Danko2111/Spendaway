@@ -3,7 +3,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import SwitchRightOutlinedIcon from "@mui/icons-material/SwitchRightOutlined";
 import { Calendar } from "react-calendar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import "react-calendar/dist/Calendar.css";
 import "./TransactionList.scss";
 import AddTransactionModal from "../AddTransactionModal/AddTransactionModal";
@@ -18,7 +18,6 @@ const TransactionList = ({
   const [catSort, setCatSort] = useState("");
   const [dateSort, setDateSort] = useState("");
   const [amountSort, setAmountSort] = useState("");
-  const [sortedData, setSortedData] = useState(transactionData);
   const [calState, setCalState] = useState("");
   const [modalVis, setModalVis] = useState("");
 
@@ -38,12 +37,14 @@ const TransactionList = ({
       setModalVis("");
     }
   };
-  const handleSortButton = (event) => {
-    switch (event.target.name) {
+  const reducer = (sortedData, action) => {
+    switch (action.type) {
+      case "update":
+        return [action.payload.newData][0];
       case "category":
         if (!catSort) {
           setCatSort("--after");
-          const newData = [...transactionData].sort((a, b) => {
+          return [...sortedData].sort((a, b) => {
             if (a.category > b.category) {
               return 1;
             }
@@ -52,10 +53,9 @@ const TransactionList = ({
             }
             return 0;
           });
-          setSortedData(newData);
         } else {
           setCatSort("");
-          const newData = [...transactionData].sort((a, b) => {
+          return [...sortedData].sort((a, b) => {
             if (a.category < b.category) {
               return 1;
             }
@@ -64,13 +64,11 @@ const TransactionList = ({
             }
             return 0;
           });
-          setSortedData(newData);
         }
-        break;
       case "date":
         if (!dateSort) {
           setDateSort("--after");
-          const newData = [...transactionData].sort((a, b) => {
+          return [...sortedData].sort((a, b) => {
             if (a.date > b.date) {
               return 1;
             }
@@ -79,10 +77,9 @@ const TransactionList = ({
             }
             return 0;
           });
-          setSortedData(newData);
         } else {
           setDateSort("");
-          const newData = [...transactionData].sort((a, b) => {
+          return [...sortedData].sort((a, b) => {
             if (a.date < b.date) {
               return 1;
             }
@@ -91,28 +88,25 @@ const TransactionList = ({
             }
             return 0;
           });
-          setSortedData(newData);
         }
-        break;
       case "amount":
         if (!amountSort) {
           setAmountSort("--after");
-          const newData = [...transactionData].sort((a, b) => {
+          return [...sortedData].sort((a, b) => {
             return b.amount - a.amount;
           });
-          setSortedData(newData);
         } else {
           setAmountSort("");
-          const newData = [...transactionData].sort((a, b) => {
+          return [...sortedData].sort((a, b) => {
             return a.amount - b.amount;
           });
-          setSortedData(newData);
         }
-        break;
       default:
         break;
     }
   };
+
+  const [sortedData, dispatch] = useReducer(reducer, transactionData);
 
   const handleCalButtonClick = () => {
     if (calState === "") {
@@ -132,7 +126,7 @@ const TransactionList = ({
   }, [dateRange]);
 
   useEffect(() => {
-    setSortedData(transactionData);
+    dispatch({ type: "update", payload: { newData: transactionData } });
   }, [transactionData]);
 
   return (
@@ -181,9 +175,7 @@ const TransactionList = ({
             <button
               className="transaction-labels-name"
               name="category"
-              onClick={(e) => {
-                handleSortButton(e);
-              }}
+              onClick={(e) => dispatch({ type: e.target.name })}
             >
               Name/Category{" "}
             </button>
@@ -197,7 +189,7 @@ const TransactionList = ({
             <button
               className="transaction-labels-date"
               name="date"
-              onClick={(e) => handleSortButton(e)}
+              onClick={(e) => dispatch({ type: e.target.name })}
             >
               Date{" "}
             </button>
@@ -212,7 +204,7 @@ const TransactionList = ({
             <button
               className="transaction-labels-amount"
               name="amount"
-              onClick={(e) => handleSortButton(e)}
+              onClick={(e) => dispatch({ type: e.target.name })}
             >
               Amount{" "}
             </button>

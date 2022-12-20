@@ -32,6 +32,7 @@ function App() {
         console.log(err);
       });
   };
+
   const updateTransactionDates = (date1, date2) => {
     const startDate = new Date(
       date1.getFullYear(),
@@ -71,7 +72,6 @@ function App() {
   };
 
   useEffect(() => {
-    // console.log("transactionDates", transactionDates);
     if (transactionDates) {
       getUserTransactions();
       getUserInfo();
