@@ -57,7 +57,11 @@ const Charts = ({
           </>
         )}
       </div>
-      <ChartControls updateTransactionDates={updateTransactionDates} />
+      <ChartControls
+        updateTransactionDates={updateTransactionDates}
+        transactionDates={transactionDates}
+        selectedGraph={selectedGraph}
+      />
     </div>
   );
 };

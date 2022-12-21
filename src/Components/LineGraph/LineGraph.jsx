@@ -30,7 +30,12 @@ const LineGraph = ({
   );
 
   useEffect(() => {
-    updateTransactionDates(new Date("2022-06-01"), new Date("2022-12-31"));
+    let date1 = new Date();
+    let date2 = new Date();
+    updateTransactionDates(
+      new Date(date1.getFullYear(), date1.getMonth() - 6, 1),
+      new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
+    );
   }, []);
 
   const incomeArr = HashTransactions(transactionData, "Income");

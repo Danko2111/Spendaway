@@ -35,7 +35,6 @@ const PieGraph = ({
       new Date(date2.getFullYear(), date2.getMonth() + 1, 0)
     );
   }, []);
-
   const result = transactionData.reduce((acc, { category, amount }) => {
     !acc[category] ? (acc[category] = amount) : (acc[category] += amount);
     return acc;
@@ -88,14 +87,25 @@ const PieGraph = ({
       <div className="pie-charts__graph-info">
         <h3 className="pie-charts__graph-info-title">Category Breakdown</h3>
         {labels.map((category, index) => {
-          return (
-            <div className="pie-charts__graph-category" key={index}>
-              <p className="pie-charts__graph-category-name">{category}</p>
-              <p className="pie-charts__graph-category-amount">
-                - ${parseFloat(graphData[category]).toFixed(2)}
-              </p>
-            </div>
-          );
+          if (!graphData[category]) {
+            return (
+              <div className="pie-charts__graph-category" key={index}>
+                <p className="pie-charts__graph-category-name">{category}</p>
+                <p className="pie-charts__graph-category-amount">
+                  ${parseFloat(0).toFixed(2)}
+                </p>
+              </div>
+            );
+          } else {
+            return (
+              <div className="pie-charts__graph-category" key={index}>
+                <p className="pie-charts__graph-category-name">{category}</p>
+                <p className="pie-charts__graph-category-amount">
+                  - ${parseFloat(graphData[category]).toFixed(2)}
+                </p>
+              </div>
+            );
+          }
         })}
       </div>
     </div>
