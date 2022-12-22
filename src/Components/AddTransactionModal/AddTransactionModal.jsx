@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import AddIcon from "@mui/icons-material/Add";
 import { v4 as uuidv4 } from "uuid";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import "./AddTransactionModal.scss";
 
 const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
@@ -11,6 +12,23 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
+  const [errClass, setErrClass] = useState("");
+
+  const updateBalance = () => {
+    if (category !== "Income") {
+      {
+        return {
+          balance: (userInfo.balance - parseFloat(amount)).toFixed(2),
+        };
+      }
+    } else {
+      {
+        return {
+          balance: (userInfo.balance + parseFloat(amount)).toFixed(2),
+        };
+      }
+    }
+  };
 
   const handleChange = (e) => {
     setCategory(e.target.value);
@@ -24,62 +42,63 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const currDate = new Date();
-    const newTransaction = {
-      transaction_id: uuidv4(),
-      name: name,
-      category: category,
-      amount: parseFloat(amount),
-      date: currDate.toLocaleDateString("en-ca"),
-    };
 
-    const updateBalance = () => {
-      if (category !== "Income") {
-        {
-          return {
-            balance: (userInfo.balance - parseFloat(amount)).toFixed(2),
-          };
-        }
-      } else {
-        {
-          return {
-            balance: (userInfo.balance + parseFloat(amount)).toFixed(2),
-          };
-        }
-      }
-    };
+    if (!category || !name || !amount) {
+      setErrClass(true);
+    } else {
+      const currDate = new Date();
+      const newTransaction = {
+        transaction_id: uuidv4(),
+        name: name,
+        category: category,
+        amount: parseFloat(amount),
+        date: currDate.toLocaleDateString("en-ca"),
+      };
 
-    axios
-      .post(`${api_url}/transactions`, newTransaction, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        axios
-          .put(`${api_url}/users`, updateBalance(), {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .then((res) => {
-            console.log("test");
-            handleModalVis();
-            window.location.reload();
-          })
-          .catch((err) => {
-            console.log("test", err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios
+        .post(`${api_url}/transactions`, newTransaction, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((res) => {
+          axios
+            .put(`${api_url}/users`, updateBalance(), {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            })
+            .then((res) => {
+              handleModalVis();
+              setErrClass(false);
+              window.location.reload();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
-    <div className={`modal-wrapper${modalVis}`} onClick={handleModalVis}>
+    <div
+      className={`modal-wrapper${modalVis}`}
+      onClick={() => {
+        handleModalVis();
+        setErrClass(false);
+      }}
+    >
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <CloseIcon className="modal__close-icon" onClick={handleModalVis} />
+        <CloseIcon
+          className="modal__close-icon"
+          onClick={() => {
+            handleModalVis();
+            setErrClass(false);
+          }}
+        />
         <form className="modal__form" onSubmit={handleFormSubmit}>
           <h3 className="modal__form-title">add a new transaction</h3>
           <label className="modal__form-label">
@@ -92,6 +111,14 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
               value={name}
               onChange={nameUpdate}
             ></input>
+            {errClass && (
+              <div className="modal__form-error-wrapper">
+                <ErrorOutlineIcon style={{ color: "red", fontSize: 17 }} />
+                <p className="modal__form-error-text">
+                  Please fill in all fields
+                </p>
+              </div>
+            )}
           </label>
           <label className="modal__form-label" id="category">
             Purchase Category{" "}
@@ -112,6 +139,14 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
               <option value={"Utilities"}>Utilities</option>
               <option value={"Income"}>Income</option>
             </select>
+            {errClass && (
+              <div className="modal__form-error-wrapper">
+                <ErrorOutlineIcon style={{ color: "red", fontSize: 17 }} />
+                <p className="modal__form-error-text">
+                  Please fill in all fields
+                </p>
+              </div>
+            )}
           </label>
           <label className="modal__form-label">
             Purchase Amount{" "}
@@ -123,6 +158,14 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
               value={amount}
               onChange={amountUpdate}
             ></input>
+            {errClass && (
+              <div className="modal__form-error-wrapper">
+                <ErrorOutlineIcon style={{ color: "red", fontSize: 17 }} />
+                <p className="modal__form-error-text">
+                  Please fill in all fields
+                </p>
+              </div>
+            )}
           </label>
           <button className="modal__form-submit" type="submit">
             Add Transaction <AddIcon />

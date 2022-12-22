@@ -1,8 +1,10 @@
 import NavBlock from "../../Components/NavBlock/NavBlock";
-import "./Settings.scss";
 import CategoryColorPicker from "../../Components/CategoryColorPicker/CategoryColorPicker";
 import { useState } from "react";
 import UserInfoForm from "../../Components/UserInfoForm/UserInfoForm";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./Settings.scss";
 
 const Settings = ({ updateLoggedInStatus, userInfo }) => {
   let colorProfileArr = "";
@@ -32,6 +34,19 @@ const Settings = ({ updateLoggedInStatus, userInfo }) => {
     colorProfileArr ? colorProfileArr[6] : "rgba(40, 255, 225, 0.5)"
   );
 
+  const showToast = (message) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const applyButtonHandler = () => {
     localStorage.setItem(
       "colorProfile",
@@ -45,22 +60,39 @@ const Settings = ({ updateLoggedInStatus, userInfo }) => {
         foodColor,
       ])
     );
+    showToast("Your preferences have been saved!");
   };
 
   const resetButtonHandler = () => {
     localStorage.removeItem("colorProfile");
-    window.location.reload();
+    showToast("Your preferences have been reset!");
+    setTimeout(() => {
+      window.location.reload();
+    }, 3500);
   };
 
   return (
     <div className="settings">
       <NavBlock updateLoggedInStatus={updateLoggedInStatus} />
       <div className="settings__content">
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <div className="settings__user-details">
           <h3 className="settings__user-details-title">User Settings</h3>
           <UserInfoForm
             updateLoggedInStatus={updateLoggedInStatus}
             userInfo={userInfo}
+            showToast={showToast}
           />
         </div>
         <div className="settings__colorpicker">

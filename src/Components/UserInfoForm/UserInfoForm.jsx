@@ -7,19 +7,24 @@ import md5 from "md5";
 import axios from "axios";
 import "./UserInfoForm.scss";
 
-const UserInfoForm = ({ updateLoggedInStatus, userInfo }) => {
+const UserInfoForm = ({ updateLoggedInStatus, userInfo, showToast }) => {
   const api_url = process.env.REACT_APP_BASE_URL;
   const [errClass, setErrClass] = useState("");
   const [newUserErrClass, setNewUserErrClass] = useState("");
+  const [passErrClass, setPassErrClass] = useState("");
 
   const [username, setUsername] = useState(userInfo.username);
   const [pass, setPass] = useState("");
+  const [passConfirm, setPassConfirm] = useState("");
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
   const handlePassChange = (e) => {
     setPass(e.target.value);
+  };
+  const handleConfirmPassChange = (e) => {
+    setPassConfirm(e.target.value);
   };
 
   const nav = useNavigate();
@@ -32,6 +37,9 @@ const UserInfoForm = ({ updateLoggedInStatus, userInfo }) => {
     };
     if (!userObj.username && !userObj.pass) {
       setErrClass("--error");
+    } else if (pass !== passConfirm) {
+      setErrClass("");
+      setPassErrClass("--error");
     } else {
       axios
         .put(`${api_url}/users/update-user`, userObj, {
@@ -41,13 +49,17 @@ const UserInfoForm = ({ updateLoggedInStatus, userInfo }) => {
         })
         .then((res) => {
           setErrClass("");
+          setPassErrClass("");
           if (res.status && res.status === 205) {
             setNewUserErrClass("--error");
           } else {
             setErrClass("");
-            localStorage.removeItem("token");
-            updateLoggedInStatus();
-            nav("/");
+            showToast("Your credentials have been updated!");
+            setTimeout(() => {
+              localStorage.removeItem("token");
+              updateLoggedInStatus();
+              nav("/");
+            }, 3500);
           }
         })
         .catch((err) => {
@@ -89,7 +101,9 @@ const UserInfoForm = ({ updateLoggedInStatus, userInfo }) => {
           )}
         </div>
         <div className="user-info-form__pass-wrapper">
-          <div className={`user-info-form__input-wrapper${errClass}`}>
+          <div
+            className={`user-info-form__input-wrapper${errClass}${passErrClass}`}
+          >
             <LockOutlinedIcon />
             <input
               className="user-info-form__input"
@@ -105,6 +119,45 @@ const UserInfoForm = ({ updateLoggedInStatus, userInfo }) => {
               <ErrorOutlineIcon style={{ color: "red", fontSize: 20 }} />
               <p className="user-info-form__error-text">
                 Please fill in all fields
+              </p>
+            </div>
+          )}
+          {passErrClass && (
+            <div className="user-info-form__error-wrapper">
+              <ErrorOutlineIcon style={{ color: "red", fontSize: 20 }} />
+              <p className="user-info-form__error-text">
+                Passwords do not match
+              </p>
+            </div>
+          )}
+        </div>
+        <div className="user-info-form__pass-wrapper">
+          <div
+            className={`user-info-form__input-wrapper${errClass}${passErrClass}`}
+          >
+            <LockOutlinedIcon />
+            <input
+              className="user-info-form__input"
+              placeholder="Confirm Password"
+              type="password"
+              name="pass"
+              value={passConfirm}
+              onChange={handleConfirmPassChange}
+            ></input>
+          </div>
+          {errClass && (
+            <div className="user-info-form__error-wrapper">
+              <ErrorOutlineIcon style={{ color: "red", fontSize: 20 }} />
+              <p className="user-info-form__error-text">
+                Please fill in all fields
+              </p>
+            </div>
+          )}
+          {passErrClass && (
+            <div className="user-info-form__error-wrapper">
+              <ErrorOutlineIcon style={{ color: "red", fontSize: 20 }} />
+              <p className="user-info-form__error-text">
+                Passwords do not match
               </p>
             </div>
           )}
