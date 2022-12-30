@@ -20,6 +20,11 @@ const LineGraph = ({
   updateSelectedGraph,
   updateTransactionDates,
 }) => {
+  let colors = ["rgba(255, 102, 144, 0.5)", "rgb(53, 170, 245, 0.5)"];
+  if (localStorage.getItem("colorProfile")) {
+    colors = JSON.parse(localStorage.getItem("colorProfile")).slice(9, 11);
+  }
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -53,16 +58,16 @@ const LineGraph = ({
     labels: incomeArr[0],
     datasets: [
       {
-        label: "$ Income",
+        label: "Income",
         data: incomeArr[1],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: colors[0],
+        backgroundColor: colors[0],
       },
       {
-        label: "$ Spending",
+        label: "Spending",
         data: spendArr[1],
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderColor: colors[1],
+        backgroundColor: colors[1],
       },
     ],
   };

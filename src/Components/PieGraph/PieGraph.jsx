@@ -22,7 +22,7 @@ const PieGraph = ({
     "rgba(40, 255, 225, 0.5)",
   ];
   if (localStorage.getItem("colorProfile")) {
-    colors = JSON.parse(localStorage.getItem("colorProfile"));
+    colors = JSON.parse(localStorage.getItem("colorProfile")).slice(0, 7);
   }
 
   ChartJS.register(ArcElement, Tooltip, Legend);

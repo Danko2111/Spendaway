@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { GithubPicker } from "react-color";
-import "./CategoryColorPicker.scss";
+import "./ItemColorPicker.scss";
 
-const CategoryColorPicker = ({ color, name, handleChangeComplete }) => {
+const ItemColorPicker = ({ color, name, handleChangeComplete }) => {
   const [pickerVis, setPickerVis] = useState("");
   const updatePickerVis = () => {
     if (pickerVis === "") {
@@ -20,17 +20,21 @@ const CategoryColorPicker = ({ color, name, handleChangeComplete }) => {
     "rgba(153, 102, 255, 0.5)",
     "rgba(255, 159, 64, 0.5)",
     "rgba(40, 255, 225, 0.5)",
+    "rgba(245, 151, 39, 0.5)",
+    "rgba(39, 185, 245, 0.5)",
+    "rgba(255, 102, 144, 0.5)",
+    "rgb(53, 170, 245, 0.5)",
   ];
   return (
-    <div className="category">
-      <div className="category__title">{name}</div>
+    <div className="item">
+      <div className="item__title">{name}</div>
       <div
-        className={`category__color`}
+        className={`item__color`}
         style={{ backgroundColor: color }}
         onClick={updatePickerVis}
       >
         {" "}
-        <div className={`category__color-picker${pickerVis}`}>
+        <div className={`item__color-picker${pickerVis}`}>
           <GithubPicker
             onChangeComplete={(e) => {
               handleChangeComplete(e);
@@ -45,4 +49,4 @@ const CategoryColorPicker = ({ color, name, handleChangeComplete }) => {
   );
 };
 
-export default CategoryColorPicker;
+export default ItemColorPicker;

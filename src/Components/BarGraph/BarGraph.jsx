@@ -29,6 +29,11 @@ const BarGraph = ({
     );
   }, []);
 
+  let colors = ["rgba(245, 151, 39, 0.5)", "rgba(39, 185, 245, 0.5)"];
+  if (localStorage.getItem("colorProfile")) {
+    colors = JSON.parse(localStorage.getItem("colorProfile")).slice(7, 9);
+  }
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -74,12 +79,12 @@ const BarGraph = ({
         {
           label: "Income",
           data: [income],
-          backgroundColor: "rgba(245, 151, 39, 0.8)",
+          backgroundColor: colors[0],
         },
         {
-          label: "Spendings",
+          label: "Spending",
           data: [spending],
-          backgroundColor: "rgba(39, 185, 245, 0.8)",
+          backgroundColor: colors[1],
         },
       ],
     };
