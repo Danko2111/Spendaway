@@ -1,7 +1,7 @@
 
 # Spendaway - A Full-Stack Budgeting App
 
-This is a full-stack budgeting application built with React and Node. Spendaway helps people with breaking down their 
+This is a full-stack and responsive budgeting application built with React and Node. Spendaway helps people with breaking down their 
 spending and income. Both visual and numeric breakdown to provide as much information as possible to the user. 
 This app is aimed towards the everyday spender. Sometimes just staring at numbers on your banking app makes it 
 difficlt to asses how well you are saving and spending money. Spendaway is here to help!
