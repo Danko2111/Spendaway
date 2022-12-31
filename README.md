@@ -38,10 +38,10 @@ for the front end and the app should be available on your browser.
 Dummy Data is available on this account: 
 ```bash
 username: Admin
-```bash
+```
 ```bash
 password: admin
-```bash
+```
 ## App Demo
 
 ![Spendaway Gif 1](https://github.com/Danko2111/Spendaway/blob/main/src/Data/Gifs/ezgif.com-gif-maker.gif)
