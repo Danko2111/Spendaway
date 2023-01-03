@@ -35,6 +35,13 @@ for the back-end, and
 npm start
 ```
 for the front end and the app should be available on your browser.
+Dummy Data is available on this account: 
+```bash
+username: Admin
+```
+```bash
+password: admin
+```
 ## App Demo
 
 ![Spendaway Gif 1](https://github.com/Danko2111/Spendaway/blob/main/src/Data/Gifs/ezgif.com-gif-maker.gif)
