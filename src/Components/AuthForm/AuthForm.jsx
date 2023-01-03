@@ -45,7 +45,7 @@ const AuthForm = ({ bgState, updateLoggedInStatus }) => {
       };
       if (activeForm) {
         axios
-          .post(`${api_url}/login`, userObj)
+          .post(`${api_url}login`, userObj)
           .then((res) => {
             setErrClass("");
             setUserErrClass("");
