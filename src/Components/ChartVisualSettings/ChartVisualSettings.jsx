@@ -5,9 +5,10 @@ import "./ChartVisualSettings.scss";
 import GraphLinks from "../GraphLinks/GraphLinks";
 
 function ChartVisualSettings({ showToast }) {
-  let colorProfileArr = "";
+  const [colorProfileArr, setColorProfileArr] = useState("");
+
   if (localStorage.getItem("colorProfile")) {
-    colorProfileArr = JSON.parse(localStorage.getItem("colorProfile"));
+    setColorProfileArr(JSON.parse(localStorage.getItem("colorProfile")));
   }
 
   const [housingColor, setHousingColor] = useState(
@@ -72,7 +73,7 @@ function ChartVisualSettings({ showToast }) {
   const resetButtonHandler = () => {
     localStorage.removeItem("colorProfile");
     showToast("Your preferences have been reset!");
-    setSelectedGraph("pie");
+    setColorProfileArr("");
     // setTimeout(() => {
     //   window.location.reload();
     // }, 3200);
