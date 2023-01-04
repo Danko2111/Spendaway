@@ -72,7 +72,7 @@ function ChartVisualSettings({ showToast }) {
   const resetButtonHandler = () => {
     localStorage.removeItem("colorProfile");
     showToast("Your preferences have been reset!");
-    setSelectedGraph("Pie");
+    setSelectedGraph("pie");
     // setTimeout(() => {
     //   window.location.reload();
     // }, 3200);
