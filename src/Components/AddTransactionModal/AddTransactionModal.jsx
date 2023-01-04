@@ -16,17 +16,13 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
 
   const updateBalance = () => {
     if (category !== "Income") {
-      {
-        return {
-          balance: (userInfo.balance - parseFloat(amount)).toFixed(2),
-        };
-      }
+      return {
+        balance: (userInfo.balance - parseFloat(amount)).toFixed(2),
+      };
     } else {
-      {
-        return {
-          balance: (userInfo.balance + parseFloat(amount)).toFixed(2),
-        };
-      }
+      return {
+        balance: (userInfo.balance + parseFloat(amount)).toFixed(2),
+      };
     }
   };
 
