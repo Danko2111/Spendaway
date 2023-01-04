@@ -5,10 +5,9 @@ import "./ChartVisualSettings.scss";
 import GraphLinks from "../GraphLinks/GraphLinks";
 
 function ChartVisualSettings({ showToast }) {
-  const [colorProfileArr, setColorProfileArr] = useState("");
-
+  let colorProfileArr = "";
   if (localStorage.getItem("colorProfile")) {
-    setColorProfileArr(JSON.parse(localStorage.getItem("colorProfile")));
+    colorProfileArr = JSON.parse(localStorage.getItem("colorProfile"));
   }
 
   const [housingColor, setHousingColor] = useState(
@@ -73,7 +72,7 @@ function ChartVisualSettings({ showToast }) {
   const resetButtonHandler = () => {
     localStorage.removeItem("colorProfile");
     showToast("Your preferences have been reset!");
-    setColorProfileArr("");
+    setMiscColor("rgba(75, 192, 192, 0.5)");
     // setTimeout(() => {
     //   window.location.reload();
     // }, 3200);
