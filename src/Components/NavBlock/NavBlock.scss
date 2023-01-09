@@ -60,7 +60,7 @@
     padding: 2rem;
     background-color: $secondary-green;
     position: absolute;  
-    top: -316px;
+    top: -356px;
     z-index: 1;
     transition: 0.5s ease-in-out;
     &--after {
@@ -79,19 +79,9 @@
     transition: 0.5s ease-in-out;
     }
     @include tablet {
-        top: -244px;
+        top: -316px;
         &--after {
             top: 130px; 
-        }
-    }
-    @include navBreak {
-        flex-direction: row;
-        align-items: flex-start;
-        top: 0;
-        &--after {
-            top: 130px; 
-            flex-direction: row;
-            align-items: flex-start;
         }
     }
     @include desktop {

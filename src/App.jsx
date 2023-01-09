@@ -7,6 +7,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Home from "./Pages/Home/Home";
 import Transactions from "./Pages/Transactions/Transactions";
 import Settings from "./Pages/Settings/Settings";
+import Budget from "./Pages/Budget/Budget";
 
 function App() {
   const api_url = process.env.REACT_APP_BASE_URL;
@@ -120,6 +121,17 @@ function App() {
                       transactionDates={transactionDates}
                       updateTransactionDates={updateTransactionDates}
                       updateLoggedInStatus={updateLoggedInStatus}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path="/budget"
+                  element={
+                    <Budget
+                      updateLoggedInStatus={updateLoggedInStatus}
+                      transactionData={transactionData}
+                      transactionDates={transactionDates}
+                      updateTransactionDates={updateTransactionDates}
                     />
                   }
                 ></Route>

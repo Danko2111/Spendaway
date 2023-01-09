@@ -3,6 +3,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
+import SavingsIcon from "@mui/icons-material/Savings";
 import Logo from "../../assets/images/Logo.svg";
 import "./NavBlock.scss";
 import { useState } from "react";
@@ -56,6 +57,17 @@ const NavBlock = ({ updateLoggedInStatus }) => {
         >
           <BarChartIcon />
           <p className="navblock__link-text">Analytics</p>
+        </div>
+        <div
+          className={
+            location.pathname === "/budget"
+              ? "navblock__link--active"
+              : "navblock__link"
+          }
+          onClick={() => nav("/budget")}
+        >
+          <SavingsIcon />
+          <p className="navblock__link-text">Budget</p>
         </div>
         <div
           className={
