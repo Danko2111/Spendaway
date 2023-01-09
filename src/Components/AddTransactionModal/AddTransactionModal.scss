@@ -12,6 +12,9 @@
         z-index: 10;
         top:92px;
         @include tablet {
+            top: 132px;
+        }
+        @include desktop {
             height: 100%;
             width: 100%;
             background-color: rgba(70, 70, 70, 0.8);
@@ -32,18 +35,17 @@
     position: relative;
     padding:3rem 2rem 1rem;
     @include tablet {
+        height: calc(100% - 132px);
+    }
+    @include desktop {
         height: 100%;
-        position: fixed;
-        top:60%;
+        position: absolute;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 500px;
-        height: 500px;
+        height: fit-content;
         border-radius: 10px;
-    }
-    @include desktop {
-        top:50%;
-        position: absolute;
     }
     &__close-icon {
         position: absolute;
@@ -116,7 +118,7 @@
             gap: 1rem;
             margin-top: auto;
             cursor: pointer;
-            @include tablet {
+            @include desktop {
                 margin-top: 0;
             }
         }

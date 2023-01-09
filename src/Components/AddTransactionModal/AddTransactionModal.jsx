@@ -12,6 +12,7 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
   const [errClass, setErrClass] = useState("");
 
   const updateBalance = () => {
@@ -35,6 +36,9 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
   const amountUpdate = (e) => {
     setAmount(e.target.value);
   };
+  const dateUpdate = (e) => {
+    setDate(e.target.value);
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +46,7 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
     if (!category || !name || !amount) {
       setErrClass(true);
     } else {
-      const currDate = new Date();
+      const currDate = new Date(date);
       const newTransaction = {
         transaction_id: uuidv4(),
         name: name,
@@ -153,6 +157,24 @@ const AddTransactionModal = ({ modalVis, handleModalVis, userInfo }) => {
               name="amount"
               value={amount}
               onChange={amountUpdate}
+            ></input>
+            {errClass && (
+              <div className="modal__form-error-wrapper">
+                <ErrorOutlineIcon style={{ color: "red", fontSize: 17 }} />
+                <p className="modal__form-error-text">
+                  Please fill in all fields
+                </p>
+              </div>
+            )}
+          </label>
+          <label className="modal__form-label">
+            Purchase Date{" "}
+            <input
+              type="date"
+              className="modal__form-input"
+              name="date"
+              value={date}
+              onChange={dateUpdate}
             ></input>
             {errClass && (
               <div className="modal__form-error-wrapper">

@@ -36,7 +36,7 @@ const ChartControls = ({
                   ? dateRange[0].toDateString()
                   : new Date(
                       defaultStartDate.getFullYear(),
-                      defaultStartDate.getMonth(),
+                      defaultStartDate.getMonth() + 1,
                       1
                     ).toDateString()
               }
