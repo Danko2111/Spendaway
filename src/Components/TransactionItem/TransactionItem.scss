@@ -1,0 +1,82 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.transaction-item {
+    width: 100%;
+    min-width: 150px;
+    height: 100%;
+    padding: 1rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+    background-image: linear-gradient(to bottom right,rgb(252, 252, 252) , rgba(238, 238, 238, 0.5));
+    color: $secondary-green;
+    text-transform: none;
+    @include tablet {
+        padding: 1rem 0 1rem 2rem;
+        min-width: 350px;
+        align-items: center;
+        gap: 0;
+        flex-wrap: unset;
+    }
+    &__title {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        @include tablet{
+            flex:1.5;
+            width: unset;
+        }
+    }
+    &__name {
+        height: 100%;
+    }
+    &__category {
+        font-size: 0.9rem;
+        color: rgb(128, 128, 128, 0.7);
+    }
+    &__date {
+        margin-left: auto;
+        width: 40%;
+        white-space: wrap;
+        text-align: end;
+        @include tablet {
+            flex:2;
+            width: unset;
+            text-align: start;
+        }
+    }
+    &__amount-wrapper {
+        flex:1;
+    }
+    &__amount-pos {
+        width: fit-content;
+        text-align: end;
+        white-space: nowrap;
+        padding: 0.4rem 0.8rem;
+        border-radius: 25px;
+        background-color: rgb(108, 175, 108, 0.3);
+        color: rgba(23, 111, 23, 0.7);
+        @include tablet {
+            text-align: start;
+        }
+    }
+    &__amount-neg {
+        width: fit-content;
+        text-align: end;
+        white-space: nowrap;
+        padding: 0.4rem 0.8rem;
+        border-radius: 25px;
+        background-color: rgb(237, 142, 142,0.3);
+        color: rgba(144, 30, 30, 0.7);
+        @include tablet {
+            text-align: start;
+        }
+    }
+
+}

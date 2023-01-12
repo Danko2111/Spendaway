@@ -1,0 +1,200 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+
+.transaction-list {
+    flex:1;
+    height: 100%;
+    width: 100%;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 5;
+    @include tablet {
+        padding:0 2rem;
+    }
+    &__items {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        overflow-y:scroll;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        box-shadow:0 2px 10px rgb(128, 128, 128, 0.2);
+        @include tablet {
+            margin: 1rem 2rem;
+        }
+    }
+    &__header {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+        @include tablet {
+            margin-bottom:0;
+            padding-bottom: 1.5rem;
+        }
+    }
+    &__title {
+        text-align: center;
+        width: 100%;
+        padding-bottom: 1rem;
+        order:1;
+        font-size: 1.5rem;
+        @include navBreak {
+            font-size: 2rem;
+        }
+    }
+    &__subtitle {
+        order: 3;
+        text-align: center;
+        width: fit-content;
+        margin: 0 auto;
+        color: white;
+        background-color: $secondary-green;
+        padding: 0.25rem 0.25rem 0.25rem 1rem;
+        border-radius: 25px;
+        text-transform: lowercase;
+        font-size: 0.7rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        user-select: none;
+        transition: 0.05s linear;
+        &:hover {
+            background-color: rgb(16, 70, 63, 0.9);
+            transition: 0.05s linear;
+        }
+
+    }
+    &__dropdown {
+        transition: 0.2s ease-in-out !important;
+        &--after {
+            transform: rotate(180deg);
+            transition: 0.2s ease-in-out !important;
+        }
+    }
+    &__addbutton {
+        color: white;
+        &-wrapper {
+            order: 2;
+            position: relative;
+            margin: 0 auto 0.5rem;
+            height: fit-content;
+            width: fit-content;
+            background-color: $secondary-green;
+            border-radius: 50%;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.05s linear;
+            &:hover {
+                background-color: rgb(16, 70, 63, 0.9);
+                transition: 0.05s linear;
+            }
+            &:active {
+                transform: scale(0.98);
+            }
+            @include tablet {
+                position: absolute;
+                margin: unset;
+                right: 35px;
+                top: 25%;
+                cursor: pointer;
+            } 
+        }
+        
+    }
+    &__calendar {
+        display: none;
+        &--after { 
+            display: inline-block;
+            color: $secondary-green;
+            position: absolute;
+            z-index: 10;
+            bottom: -265px;
+            left: 50%;
+            transform: translatex(-50%);
+        }
+    }
+}
+.transaction-labels {
+    display: none;
+    @include tablet {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 2rem 0 1rem 2rem;
+        &-button-wrapper {
+            width: fit-content;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+        }
+        &-sort {
+            scale: (0.7);
+            transform: rotate(90deg);
+            transition: 0.2s ease-in-out !important;
+            cursor:auto;
+            &--after {
+                scale: (0.7);
+                transform: rotate(270deg);
+                transition: 0.2s ease-in-out !important; 
+            }
+        }
+        &-name {
+            width: fit-content;
+            border:none;
+            background-color: white;
+            color: $secondary-green;
+            cursor: pointer;
+            position: relative;
+            &-wrapper {
+                flex: 1.5;
+            }
+        }
+        &-date {
+            width: fit-content;
+            border:none;
+            background-color: white;
+            color: $secondary-green;
+            cursor: pointer;
+            &-wrapper {
+                flex:2;
+            }
+        }
+        &-amount {
+            text-align: start;
+            width: fit-content;
+            white-space: nowrap;
+            border:none;
+            background-color: white;
+            color: $secondary-green;
+            cursor: pointer;
+            &-wrapper {
+                flex:1;
+            }
+        }
+    }
+   
+}
+.react-calendar__month-view__days__day {
+    color:$secondary-green; 
+}
+.react-calendar__tile--now, .react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus {
+    background-color: white;
+}
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus, .react-calendar__tile--active {
+    background-color:$alt-green2;
+}

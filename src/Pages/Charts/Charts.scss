@@ -1,0 +1,41 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+
+.charts {
+    width: 100vw;
+    height: 100%;
+    background-color: $main-white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    @include desktop {
+        height: 100vh;
+        flex-direction: row;
+    }
+    &__content {
+        width: 100%;
+        height: 100%;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        color: $secondary-green;
+        margin-top: 92px;
+        @include tablet {
+            margin-top: 132px;
+        }
+        @include desktop {
+            margin-top: 0px;
+            flex-direction: row;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            &::-webkit-scrollbar { 
+                display: none;  /* Safari and Chrome */
+            }
+        }
+    }
+
+}

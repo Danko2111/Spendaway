@@ -1,0 +1,121 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.dashboard {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: $main-white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    @include desktop {
+        height: 100vh;
+        flex-direction: row;
+    }
+
+
+    &__content {
+        width: 100%;
+        height: 100%;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        color: $secondary-green;
+        margin-top: 92px;
+        @include tablet {
+            margin-top: 132px;
+        }
+        @include desktop {
+            margin-top: 0;
+            height: unset;
+            flex-direction: row;
+        }
+    }
+    &__main {
+        flex: 1;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    &__hero {
+        border-radius: 8px;
+        background-color: white;
+        color: $alt-green2;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+        gap: 1rem;
+        background-color: $secondary-green;
+        &-title {
+            font-size: 1rem;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        &-text {
+            white-space: nowrap;
+        }
+         &-text-wrapper {
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+        }
+        &-balance {
+            width: fit-content;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.25rem;
+            padding: 1rem 4rem;
+            color:white;
+        }
+        @include tablet {
+            &-title {
+                font-size: 1rem;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+            &-text {
+                white-space: nowrap;
+            }
+            &-text-wrapper {
+                flex:1;
+                height: 100%;
+                width: fit-content;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                margin:0 auto;
+            }
+            &-balance {
+                flex:2;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2.25rem;
+                padding: 1rem 2rem;
+                border-radius: 20px;
+                color:white;
+                background-color: $secondary-green;
+            }
+        }
+        
+    }
+}

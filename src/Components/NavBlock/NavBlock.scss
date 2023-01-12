@@ -1,0 +1,222 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.navblock {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $secondary-green;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    @include desktop {
+        width: unset;
+        position: relative;
+        flex-direction: column;
+    }
+}
+
+.navblock__logo-wrapper {
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    background-color: $secondary-green;
+    @include tablet {
+        padding:1rem 2rem; 
+    }
+    @include desktop {
+        justify-content: flex-start;
+        padding:2rem 2rem;
+    }
+}
+.navblock-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    padding: 0.5rem;
+    background-color: #e6f8f7;
+    @include tablet {
+        width: 100px;
+        height: 100px;
+    }
+    @include desktop {
+        flex:1;
+        width: 130px;
+        height: 130px;
+    }
+}
+.navblock__links-wrapper {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 3rem;
+    padding: 2rem;
+    background-color: $secondary-green;
+    position: absolute;  
+    top: -316px;
+    z-index: 1;
+    transition: 0.5s ease-in-out;
+    &--after {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 3rem;
+    padding: 2rem;
+    background-color: $secondary-green;
+    position: absolute;  
+    top: 92px; 
+    z-index: 1;
+    transition: 0.5s ease-in-out;
+    }
+    @include tablet {
+        top: -244px;
+        &--after {
+            top: 130px; 
+        }
+    }
+    @include navBreak {
+        flex-direction: row;
+        align-items: flex-start;
+        top: 0;
+        &--after {
+            top: 130px; 
+            flex-direction: row;
+            align-items: flex-start;
+        }
+    }
+    @include desktop {
+        height: 100%;
+        flex-direction: column;
+        position: unset;
+        &--after {
+            height: 100%;
+            flex-direction: column;
+            position: unset;  
+        }
+    }
+}
+.navblock__link{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    color: $main-white;
+    cursor: pointer;
+    user-select: none;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    &:hover &-text  {
+            border-bottom: 1px solid $main-white;
+    }
+    &--active {
+        @extend .navblock__link;
+    }
+    &--active &-text  {
+        @extend .navblock__link;
+        border-bottom: 1px solid $main-white;
+        font-weight: 600;
+    }
+    @include tablet {
+        font-size: 0.9rem;
+    }
+}
+.navblock__logout-button {
+    background-color: $secondary-green;
+    border: none;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+    color: $main-white;
+    font-size: inherit;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: auto;
+    white-space: nowrap;
+    font-size: 0.7rem;
+    &:hover &-text {
+        border-bottom: 1px solid $main-white;
+    }
+    @include tablet {
+        font-size: 0.9rem;
+    }
+}
+.navblock__burger-menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 2;
+    left: 2rem;
+    background-color: $secondary-green;
+    @include tablet {
+        gap: 0.4rem
+    }
+    @include desktop {
+        display: none;
+    }
+}
+
+.bar1, .bar2, .bar3{
+    background-color: $main-white;
+    width: 20px;
+    height: 2px;
+    border-radius: 4px;
+    transition: 0.5s ease-in-out;
+    @include tablet {
+        width: 30px;
+        height: 4px;
+    }
+}
+.bar1--after {
+    background-color: $main-white;
+    width: 20px;
+    height: 2px;
+    border-radius: 4px;
+    transition: 0.5s ease-in-out;
+    transform:translateY(7px) rotate(225deg);
+    @include tablet {
+        width: 30px;
+        height: 4px;
+        transform:translateY(10px) rotate(225deg);
+    }
+}
+.bar2--after{
+    background-color: $main-white;
+    width: 20px;
+    height: 2px;
+    border-radius: 4px;
+    transition: 0.5s ease-in-out;
+    transform:rotate(315deg);
+    @include tablet {
+        width: 30px;
+        height: 4px;
+    }
+}
+.bar3--after {
+    background-color: $main-white;
+    width: 20px;
+    height: 2px;
+    border-radius: 4px;
+    transition: 0.1s ease-in-out;
+    opacity: 0;
+    @include tablet {
+        width: 30px;
+        height: 4px;
+    }
+}

@@ -1,0 +1,86 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.charts__controls {
+    flex: 1;
+    margin: 0 2rem 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: $secondary-green;
+    @include desktop {
+        width: 100%;
+        margin: 2rem 2rem 2rem 0;
+    }
+    &-title {
+        text-transform: uppercase;
+        text-align: center;
+        width: 100%;
+        padding:1rem 0 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+        @include desktop {
+            padding:1rem 0 3rem;
+        }
+    }
+    &-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        overflow-y: auto;
+        padding: 1rem;
+        width: 100%;
+        gap: 2rem;
+    }
+    &-chartpicker {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 2rem;
+    }
+    &-calendar-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    &-calendar-inputs {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        @include tablet {
+            flex-direction: row;
+        }
+    }
+    &-calendar-date {
+        max-width: 175px;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+        border: 1px solid $secondary-green;
+        outline: none;
+        color: $secondary-green;
+    }
+    &-calendar {
+        color: $secondary-green;
+    }
+    .react-calendar__month-view__days__day {
+        color:$secondary-green; 
+    }
+    .react-calendar__tile--now, .react-calendar__tile--now:enabled:hover, .react-calendar__tile--now:enabled:focus {
+        background-color: white;
+    }
+    .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus, .react-calendar__tile--active {
+        background-color:$alt-green2;
+    }
+}

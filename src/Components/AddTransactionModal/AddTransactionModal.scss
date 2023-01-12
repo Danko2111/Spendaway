@@ -1,0 +1,139 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+
+
+.modal-wrapper {
+    display: none;
+    &--open {
+        width: 100vw;
+        height: 100%;
+        position: fixed;
+        z-index: 10;
+        top:92px;
+        @include tablet {
+            top: 132px;
+        }
+        @include desktop {
+            height: 100%;
+            width: 100%;
+            background-color: rgba(70, 70, 70, 0.8);
+            position: absolute;
+            z-index: 10;
+            top:0;
+            left:0;
+        } 
+    }
+}
+
+.modal {
+    position: fixed;
+    z-index: 10;
+    background-color: white;
+    width: 100%;
+    height: calc(100% - 92px);
+    position: relative;
+    padding:3rem 2rem 1rem;
+    @include tablet {
+        height: calc(100% - 132px);
+    }
+    @include desktop {
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: fit-content;
+        border-radius: 10px;
+    }
+    &__close-icon {
+        position: absolute;
+        right: 3%;
+        top: 3%;
+        cursor: pointer;
+        &:hover {
+            transform: rotate(180deg);
+            transition: 0.3s ease-in-out;
+        }
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2rem;
+        height: 100%;
+        @include desktop {
+            gap: 2rem;
+        }
+        &-title {
+            padding:0 5rem 1rem;
+            border-bottom: 1px solid rgb(128, 128, 128, 0.5);
+        }
+        &-input {
+            width: 100%;
+            min-width: 190px;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            outline: none;
+            border: 1px solid $main-white;
+            border-radius: 20px;
+            color: $secondary-green;
+            @include desktop {
+                min-width: 250px;
+            }
+        }
+        &-select {
+            width: 100%;
+            min-width: 190px;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            outline: none;
+            border: 1px solid $main-white;
+            border-radius: 20px;
+            color: $secondary-green;
+            @include desktop {
+                min-width: 250px;
+            }
+        }
+        &-label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            width: 100%;
+            position: relative;
+        }
+        &-submit {
+            text-transform: uppercase;
+            padding: 0.8rem 2rem 0.8rem 2rem;
+            outline: none;
+            border: none;
+            background-color: $secondary-green;
+            color: white;
+            border-radius: 25px;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: auto;
+            cursor: pointer;
+            @include desktop {
+                margin-top: 0;
+            }
+        }
+        &-error-wrapper {
+            position: absolute;
+            bottom: -22px;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        &-error-text {
+            color: red;
+            font-size: 0.6rem;
+        }
+    }
+}
