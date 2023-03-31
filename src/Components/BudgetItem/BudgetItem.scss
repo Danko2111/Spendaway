@@ -1,0 +1,27 @@
+@import "../../Styles/Partials/variables";
+@import "../../Styles/Partials/mixins";
+
+.budget-item {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__category {
+    &-name {
+      color: $secondary-green;
+    }
+    &-name-wrapper {
+      flex: 1;
+    }
+    &-progress-wrapper {
+      flex: 1;
+    }
+    &-amount-wrapper {
+      flex: 1;
+      text-align: end;
+    }
+  }
+}
